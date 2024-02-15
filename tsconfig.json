@@ -1,17 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "es2019",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "declaration": true,
-    "outDir": "./dist"
-  },
+  "extends": "./tsconfig.build.json",
   "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "./src/build/*"
+    "./src/**/*",
+    "./tests/**/*"
   ]
 }
