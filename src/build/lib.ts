@@ -1,20 +1,21 @@
-import { readdirSync, readFileSync, lstatSync } from 'fs'
+import { readdir, readFile, lstat } from 'fs/promises'
 import { join } from 'path'
 import YAML from 'yaml'
 import { Color, Palette, HEX } from './types'
 
-const isFile = (fileName: string): boolean => {
-  return lstatSync(fileName).isFile()
+const isFile = async (fileName: string): Promise<boolean> => {
+  return (await lstat(fileName)).isFile()
 }
 
-export function getSchemesFromPath(folderPath: string): Record<string, Palette> {
+export async function getSchemesFromPath(folderPath: string): Promise<Record<string, Palette>> {
   const schemes: Record<string, Palette> = {}
+  const files = await readdir(folderPath)
 
-  readdirSync(folderPath).forEach(fileName => {
+  for (const fileName of files) {
     const filePath = join(folderPath, fileName)
 
-    if (isFile(filePath) && filePath.endsWith('.yaml')) {
-      const fileContents = readFileSync(filePath, 'utf-8')
+    if (await isFile(filePath) && filePath.endsWith('.yaml')) {
+      const fileContents = await readFile(filePath, 'utf-8')
       const schemeName = fileName.split('.yaml')[0]
       const { palette }: { palette: Palette } = YAML.parse(fileContents)
 
@@ -24,7 +25,7 @@ export function getSchemesFromPath(folderPath: string): Record<string, Palette> 
 
       schemes[schemeName] = palette
     }
-  })
+  }
 
   return schemes
 }
