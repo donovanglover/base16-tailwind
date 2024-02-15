@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "repository": "donovanglover/base16-tailwind",
   "description": "Easily add base16 styles to your Tailwind project.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/lib.js",
+  "types": "dist/lib.d.ts",
   "files": [
     "/dist"
   ],
