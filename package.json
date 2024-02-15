@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
-    "build:schemes": "ts-node ./src/build/main.ts",
+    "prepare": "mkdir -p ./src/dist && ts-node ./src/build/main.ts > ./src/dist/schemes.json",
     "test": "jest"
   },
   "keywords": [
