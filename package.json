@@ -9,7 +9,7 @@
     "/dist"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "tsc",
     "prepare": "mkdir -p ./src/dist && ts-node ./src/build/main.ts > ./src/dist/schemes.json",
     "test": "jest"
   },

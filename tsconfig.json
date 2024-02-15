@@ -1,8 +1,20 @@
 {
-  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "~build": ["./src/build/lib.ts"],
+      "~lib": ["./src/lib.ts"]
+    },
+    "target": "es2019",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "declaration": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist"
+  },
   "include": [
-    "./src/**/*",
-    "./tests/**/*",
-    "./*.ts"
+    "./src/*.ts"
   ]
 }
