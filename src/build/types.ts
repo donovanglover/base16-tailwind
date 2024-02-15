@@ -17,6 +17,6 @@ export enum Color {
   base0F = 'base0F'
 }
 
-export type HEX = `#${string}`;
+export type HEX = `#${string}`
 
 export type Palette = Record<Color, HEX>

@@ -1,13 +1,13 @@
 import { readdir, readFile, lstat } from 'fs/promises'
 import { join } from 'path'
 import YAML from 'yaml'
-import { Color, Palette, HEX } from './types'
+import { type Color, type Palette, type HEX } from './types'
 
 const isFile = async (fileName: string): Promise<boolean> => {
   return (await lstat(fileName)).isFile()
 }
 
-export async function getSchemesFromPath(folderPath: string): Promise<Record<string, Palette>> {
+export async function getSchemesFromPath (folderPath: string): Promise<Record<string, Palette>> {
   const schemes: Record<string, Palette> = {}
   const files = await readdir(folderPath)
 

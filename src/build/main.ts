@@ -1,6 +1,6 @@
-import { getSchemesFromPath } from "./lib"
+import { getSchemesFromPath } from './lib'
 
-(async () => {
+void (async () => {
   const schemes = await getSchemesFromPath('./schemes/base16')
 
   console.log(JSON.stringify(schemes))
