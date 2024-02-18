@@ -1,24 +1,27 @@
 import { colors } from '~lib'
 
+const solarized = {
+  100: '#fdf6e3',
+  200: '#eee8d5',
+  300: '#93a1a1',
+  400: '#839496',
+  500: '#657b83',
+  600: '#586e75',
+  700: '#073642',
+  800: '#002b36',
+  blue: '#268bd2',
+  current: 'currentColor',
+  cyan: '#2aa198',
+  green: '#859900',
+  orange: '#cb4b16',
+  pink: '#d33682',
+  purple: '#6c71c4',
+  red: '#dc322f',
+  transparent: 'transparent',
+  yellow: '#b58900'
+}
+
 test('Colors are correct', () => {
-  expect(colors).toEqual({
-    transparent: 'transparent',
-    current: 'currentColor',
-    base00: '#272822',
-    base01: '#383830',
-    base02: '#49483e',
-    base03: '#75715e',
-    base04: '#a59f85',
-    base05: '#f8f8f2',
-    base06: '#f5f4f1',
-    base07: '#f9f8f5',
-    base08: '#f92672',
-    base09: '#fd971f',
-    base0A: '#f4bf75',
-    base0B: '#a6e22e',
-    base0C: '#a1efe4',
-    base0D: '#66d9ef',
-    base0E: '#ae81ff',
-    base0F: '#cc6633'
-  })
+  expect(colors).toHaveProperty('solarized-dark', solarized)
+  expect(colors).toHaveProperty('solarized-light', solarized)
 })
