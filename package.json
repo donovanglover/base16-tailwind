@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "git submodule update --init && ts-node ./src/build/main.ts"
+    "prepare": "git submodule update --init && bun ./src/build/main.ts"
   },
   "keywords": [
     "base16",
@@ -26,14 +26,12 @@
   "author": "Donovan Glover",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "eslint": "^8.0.1",
     "eslint-config-standard-with-typescript": "^43.0.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
-    "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
     "yaml": "^2.3.4"
   },
