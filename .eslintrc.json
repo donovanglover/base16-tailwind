@@ -7,8 +7,7 @@
     "extends": "standard-with-typescript",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module",
-        "project": ["./tsconfig.eslint.json"]
+        "sourceType": "module"
     },
     "rules": {
     }
