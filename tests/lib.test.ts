@@ -1,4 +1,4 @@
-import { colors } from '~lib'
+import { colors } from '../src/lib'
 
 const solarized = {
   100: '#fdf6e3',

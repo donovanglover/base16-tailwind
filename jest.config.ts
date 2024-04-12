@@ -7,9 +7,7 @@ const config: Config = {
   collectCoverage: true,
   collectCoverageFrom: ['./src/**/lib.ts'],
   moduleNameMapper: {
-    '@/(.*)': '<rootDir>/src/$1',
-    '~build': '<rootDir>/src/build/lib.ts',
-    '~lib': '<rootDir>/src/lib.ts'
+    '@/(.*)': '<rootDir>/src/$1'
   }
 }
 
