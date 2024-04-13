@@ -1,4 +1,4 @@
-import { readdir, readFile, lstat } from 'fs/promises'
+import fs from 'fs/promises'
 import { join } from 'path'
 import YAML from 'yaml'
 
@@ -26,18 +26,18 @@ export type HEX = `#${string}`
 export type Palette = Record<Color, HEX>
 
 const isFile = async (fileName: string): Promise<boolean> => {
-  return (await lstat(fileName)).isFile()
+  return (await fs.lstat(fileName)).isFile()
 }
 
 export async function getSchemesFromPath (folderPath: string): Promise<Record<string, Palette>> {
   const schemes: Record<string, Palette> = {}
-  const files = await readdir(folderPath)
+  const files = await fs.readdir(folderPath)
 
   for (const fileName of files) {
     const filePath = join(folderPath, fileName)
 
     if (await isFile(filePath) && filePath.endsWith('.yaml')) {
-      const fileContents = await readFile(filePath, 'utf-8')
+      const fileContents = await fs.readFile(filePath, 'utf-8')
       const schemeName = fileName.split('.yaml')[0]
       const { palette }: { palette: Palette } = YAML.parse(fileContents)
 
@@ -51,3 +51,12 @@ export async function getSchemesFromPath (folderPath: string): Promise<Record<st
 
   return schemes
 }
+
+const outputDirectory = './src/dist'
+
+void (async () => {
+  const schemes = await getSchemesFromPath('./schemes/base16')
+
+  await fs.mkdir(outputDirectory, { recursive: true })
+  await fs.writeFile(`${outputDirectory}/schemes.json`, JSON.stringify(schemes) + '\n', 'utf-8')
+})()
