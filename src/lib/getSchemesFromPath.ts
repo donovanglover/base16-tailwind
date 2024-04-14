@@ -2,12 +2,11 @@ import { readFileSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import YAML from 'yaml'
 import { isFile } from './isFile'
-import type { Base16ColorName } from '../types/Base16ColorName'
-import type { Base16ColorValue } from '../types/Base16ColorValue'
-import type { Base16ColorScheme } from '../types/Base16ColorScheme'
+import type { Base16Scheme } from '../types/Base16Scheme'
+import { type Base16Yaml } from '../types/Base16Yaml'
 
-export function getSchemesFromPath (folderPath: string): Record<string, Base16ColorScheme> {
-  const schemes: Record<string, Base16ColorScheme> = {}
+export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
+  const schemes: Base16Scheme[] = []
   const files = readdirSync(folderPath)
 
   for (const fileName of files) {
@@ -16,13 +15,30 @@ export function getSchemesFromPath (folderPath: string): Record<string, Base16Co
     if (isFile(filePath) && filePath.endsWith('.yaml')) {
       const fileContents = readFileSync(filePath, 'utf-8')
       const schemeName = fileName.split('.yaml')[0]
-      const { palette }: { palette: Base16ColorScheme } = YAML.parse(fileContents)
+      const yaml: Base16Yaml = YAML.parse(fileContents)
 
-      for (const [key, value] of Object.entries(palette) as Array<[Base16ColorName, Base16ColorValue]>) {
-        palette[key] = `#${value}`
-      }
+      schemes.push({
+        name: `base16-${schemeName}`,
 
-      schemes[schemeName] = palette
+        base16Colors: {
+          base00: `#${yaml.palette.base00}`,
+          base01: `#${yaml.palette.base01}`,
+          base02: `#${yaml.palette.base02}`,
+          base03: `#${yaml.palette.base03}`,
+          base04: `#${yaml.palette.base04}`,
+          base05: `#${yaml.palette.base05}`,
+          base06: `#${yaml.palette.base06}`,
+          base07: `#${yaml.palette.base07}`,
+          base08: `#${yaml.palette.base08}`,
+          base09: `#${yaml.palette.base09}`,
+          base0A: `#${yaml.palette.base0A}`,
+          base0B: `#${yaml.palette.base0B}`,
+          base0C: `#${yaml.palette.base0C}`,
+          base0D: `#${yaml.palette.base0D}`,
+          base0E: `#${yaml.palette.base0E}`,
+          base0F: `#${yaml.palette.base0F}`
+        }
+      })
     }
   }
 
