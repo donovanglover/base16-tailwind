@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
+import typographyPlugin from '@tailwindcss/typography'
 import { type PluginAPI } from 'tailwindcss/types/config'
 import { getSchemesFromPath } from './lib/getSchemesFromPath'
 import { hexToRgb } from './lib/hexToRgb'
@@ -105,7 +106,7 @@ export const base16Tailwind: Config = {
   },
 
   plugins: [
-    require('@tailwindcss/typography'),
+    typographyPlugin,
     plugin(base16Plugin)
   ]
 }
