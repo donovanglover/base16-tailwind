@@ -45,10 +45,12 @@ export interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout ({ children }: RootLayoutProps) {
+export default function RootLayout ({ children }: RootLayoutProps): React.ReactElement {
   return (
     <html lang="en-US" className="base16-monokai">
-      {children}
+      <body className="text-100 bg-800">
+        {children}
+      </body>
     </html>
   )
 }
@@ -63,16 +65,38 @@ export interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout ({ children }: RootLayoutProps) {
+export default function RootLayout ({ children }: RootLayoutProps): React.ReactElement {
   return (
     <html lang="en-US" className="base16-emil dark:base16-oceanicnext">
-      {children}
+      <body className="text-100 bg-800">
+        {children}
+      </body>
     </html>
   )
 }
 ```
 
 ### Switch between multiple color schemes with CSS variables
+
+```typescript
+'use client'
+
+const themes = [
+  "base16-monokai"
+  "base16-tarot"
+  "base16-embers"
+]
+
+function changeTheme () {
+  document.documentElement.className = themes[Math.floor(Math.random() * themes.length)]
+}
+
+export default function ChangeThemeButton (): React.ReactElement {
+  return (
+    <button onClick={changeTheme}>Change Theme</button>
+  )
+}
+```
 
 ## Contributing
 
