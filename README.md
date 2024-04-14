@@ -24,7 +24,7 @@ Color schemes are handled with CSS variables. Tailwind only imports the ones you
 
 ### Extending with your own config
 
-```typescriptreact
+```tsx
 import type { Config } from 'tailwindcss'
 import base16Tailwind from 'base16-tailwind'
 
@@ -39,7 +39,7 @@ export default { ...base16Tailwind, ...tailwindConfig }
 
 Example with TypeScript and Next.js App Router:
 
-```typescriptreact
+```tsx
 import "base16-tailwind/dist/schemes.css"
 
 export interface RootLayoutProps {
@@ -59,7 +59,7 @@ export default function RootLayout ({ children }: RootLayoutProps): React.ReactE
 
 ### Use light and dark color schemes
 
-```typescriptreact
+```tsx
 import "base16-tailwind/dist/schemes.css"
 
 export interface RootLayoutProps {
@@ -79,7 +79,7 @@ export default function RootLayout ({ children }: RootLayoutProps): React.ReactE
 
 ### Switch between multiple color schemes with CSS variables
 
-```typescriptreact
+```tsx
 'use client'
 
 const themes = [
