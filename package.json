@@ -5,7 +5,7 @@
   "description": "Easily add base16 styles to your Tailwind project.",
   "main": "src/lib.ts",
   "scripts": {
-    "install": "git submodule update --init && ts-node ./src/main.ts",
+    "install": "ts-node ./src/main.ts",
     "test": "jest"
   },
   "keywords": [
