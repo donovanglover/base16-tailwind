@@ -1,7 +1,17 @@
 import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
+import { type PluginAPI } from 'tailwindcss/types/config'
 
 interface typographyProps {
   theme: (tailwindClass: string) => string
+}
+
+export const base16Plugin = ({ addUtilities }: PluginAPI): void => {
+  addUtilities({
+    '.base16-3024': {
+      '--color-100': '120 120 120'
+    }
+  })
 }
 
 export const base16Tailwind: Config = {
@@ -68,7 +78,8 @@ export const base16Tailwind: Config = {
   },
 
   plugins: [
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    plugin(base16Plugin)
   ]
 }
 
