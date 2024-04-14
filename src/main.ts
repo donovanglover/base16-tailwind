@@ -54,31 +54,16 @@ export async function getSchemesFromPath (folderPath: string): Promise<Record<st
   return schemes
 }
 
+// Given: color in "#AABBCC"
+// Returns: "38 94 122"
+function rgb (color: HEX): string {
+  return colord(color).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '')
+}
+
 void (async () => {
   const schemes = await getSchemesFromPath('./schemes/base16')
 
-  interface Colors {
-    transparent: 'transparent'
-    current: 'currentColor'
-    100: string
-    200: string
-    300: string
-    400: string
-    500: string
-    600: string
-    700: string
-    800: string
-    red: string
-    orange: string
-    yellow: string
-    green: string
-    cyan: string
-    blue: string
-    purple: string
-    pink: string
-  }
-
-  const colorsArray: Record<string, Colors> = {}
+  const colorsArray = []
 
   for (const [colorName, colorValues] of Object.entries(schemes)) {
     const colorShades = isLight(colorValues.base00)
@@ -103,29 +88,31 @@ void (async () => {
           100: rgb(colorValues.base07)
         }
 
-    colorsArray[colorName] = {
-      transparent: 'transparent',
-      current: 'currentColor',
-      ...colorShades,
-      red: rgb(colorValues.base08),
-      orange: rgb(colorValues.base09),
-      yellow: rgb(colorValues.base0A),
-      green: rgb(colorValues.base0B),
-      cyan: rgb(colorValues.base0C),
-      blue: rgb(colorValues.base0D),
-      purple: rgb(colorValues.base0E),
-      pink: rgb(colorValues.base0F)
-    }
+    colorsArray.push(`
+      @layer base {
+        [data-theme="${colorName}"] {
+          --color-100: ${colorShades['100']};
+          --color-200: ${colorShades['200']};
+          --color-300: ${colorShades['300']};
+          --color-400: ${colorShades['400']};
+          --color-500: ${colorShades['500']};
+          --color-600: ${colorShades['600']};
+          --color-700: ${colorShades['700']};
+          --color-800: ${colorShades['800']};
+
+          --color-red: ${rgb(colorValues.base08)};
+          --color-orange: ${rgb(colorValues.base09)};
+          --color-yellow: ${rgb(colorValues.base0A)};
+          --color-green: ${rgb(colorValues.base0B)};
+          --color-cyan: ${rgb(colorValues.base0C)};
+          --color-blue: ${rgb(colorValues.base0D)};
+          --color-purple: ${rgb(colorValues.base0E)};
+          --color-pink: ${rgb(colorValues.base0F)};
+        }
+      }
+    `)
   }
 
-  console.log(colorsArray)
-
-  // await fs.mkdir('./dist', { recursive: true })
-  // await fs.writeFile('./dist/schemes.json', JSON.stringify(schemes) + '\n', 'utf-8')
+  await fs.mkdir('./dist', { recursive: true })
+  await fs.writeFile('./dist/schemes.css', colorsArray.join('\n'), 'utf-8')
 })()
-
-// Given: color in "#AABBCC"
-// Returns: "38 94 122"
-function rgb (color: HEX): string {
-  return colord(color).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '')
-}
