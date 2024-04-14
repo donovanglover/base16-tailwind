@@ -1,9 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"],
-      "~build": ["./src/build/lib.ts"],
-      "~lib": ["./src/lib.ts"]
+      "@/*": ["./src/*"]
     },
     "target": "es2021",
     "module": "commonjs",
