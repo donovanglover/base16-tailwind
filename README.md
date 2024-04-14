@@ -13,7 +13,6 @@ Easily use [base16 color schemes](https://github.com/tinted-theming/schemes) wit
 - Tailwind only imports color schemes you use, minimizing the bundle size
 - Built-in support for [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography)
 - Native support for TypeScript and Next.js App Router projects
-- Easily customize your tailwind config your needs
 
 ## Installation
 
@@ -26,9 +25,18 @@ npm add donovanglover/base16-tailwind
 tailwind.config.ts:
 
 ```tsx
+import type { Config } from 'tailwindcss'
 import base16Tailwind from 'base16-tailwind'
 
-export default base16Tailwind
+const tailwindConfig: Config = {
+  ...base16Tailwind,
+
+  future: {
+    hoverOnlyWhenSupported: true
+  }
+}
+
+export default tailwindConfig
 ```
 
 app/layout.tsx:
@@ -72,7 +80,3 @@ export default function ChangeThemeButton (): React.ReactElement {
   )
 }
 ```
-
-## License
-
-MIT
