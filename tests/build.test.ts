@@ -1,7 +1,7 @@
 import { getSchemesFromPath } from '../src/lib/getSchemesFromPath'
 
-test('Returns correct JSON from YAML schemes', async () => {
-  const result = await getSchemesFromPath('./schemes/base16')
+test('Returns correct JSON from YAML schemes', () => {
+  const result = getSchemesFromPath('./schemes/base16')
 
   expect(result).toHaveProperty('monokai', {
     base00: '#272822',

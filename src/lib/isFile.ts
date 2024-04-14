@@ -1,5 +1,5 @@
-import { lstat } from 'node:fs/promises'
+import { lstatSync } from 'node:fs'
 
-export const isFile = async (fileName: string): Promise<boolean> => {
-  return (await lstat(fileName)).isFile()
+export function isFile (fileName: string): boolean {
+  return lstatSync(fileName).isFile()
 }

@@ -10,11 +10,7 @@ interface typographyProps {
   theme: (tailwindClass: string) => string
 }
 
-let schemes: Record<string, Palette>
-
-void (async () => {
-  schemes = await getSchemesFromPath('./schemes/base16')
-})()
+const schemes: Record<string, Palette> = getSchemesFromPath('./schemes/base16')
 
 export const base16Plugin = ({ addUtilities }: PluginAPI): void => {
   for (const [colorName, colorValues] of Object.entries(schemes)) {
