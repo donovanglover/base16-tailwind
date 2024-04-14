@@ -1,7 +1,6 @@
 import fs from 'fs/promises'
 import { join } from 'path'
 import YAML from 'yaml'
-import { isLight } from 'color-2-name'
 import { colord } from 'colord'
 
 export enum Color {
@@ -72,39 +71,17 @@ void (async () => {
   ]
 
   for (const [colorName, colorValues] of Object.entries(schemes)) {
-    const colorShades = isLight(colorValues.base00)
-      ? {
-          800: rgb(colorValues.base07),
-          700: rgb(colorValues.base06),
-          600: rgb(colorValues.base05),
-          500: rgb(colorValues.base04),
-          400: rgb(colorValues.base03),
-          300: rgb(colorValues.base02),
-          200: rgb(colorValues.base01),
-          100: rgb(colorValues.base00)
-        }
-      : {
-          800: rgb(colorValues.base00),
-          700: rgb(colorValues.base01),
-          600: rgb(colorValues.base02),
-          500: rgb(colorValues.base03),
-          400: rgb(colorValues.base04),
-          300: rgb(colorValues.base05),
-          200: rgb(colorValues.base06),
-          100: rgb(colorValues.base07)
-        }
-
     colorsArray.push(`
       @layer base {
         .base16-${colorName} {
-          --color-100: ${colorShades['100']};
-          --color-200: ${colorShades['200']};
-          --color-300: ${colorShades['300']};
-          --color-400: ${colorShades['400']};
-          --color-500: ${colorShades['500']};
-          --color-600: ${colorShades['600']};
-          --color-700: ${colorShades['700']};
-          --color-800: ${colorShades['800']};
+          --color-100: ${rgb(colorValues.base07)};
+          --color-200: ${rgb(colorValues.base06)};
+          --color-300: ${rgb(colorValues.base05)};
+          --color-400: ${rgb(colorValues.base04)};
+          --color-500: ${rgb(colorValues.base03)};
+          --color-600: ${rgb(colorValues.base02)};
+          --color-700: ${rgb(colorValues.base01)};
+          --color-800: ${rgb(colorValues.base00)};
 
           --color-red: ${rgb(colorValues.base08)};
           --color-orange: ${rgb(colorValues.base09)};
