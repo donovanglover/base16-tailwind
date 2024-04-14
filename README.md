@@ -4,15 +4,14 @@ Easily use [base16 color schemes](https://github.com/tinted-theming/schemes) wit
 
 ## Features
 
-- All the latest base16 color schemes
+- All the latest base16 color schemes with `base16-${name}`
 - Light to dark shades in order from `text-100` to `text-800`
-- Human-friendly variable names like `bg-orange` and `text-red`
+- Human-friendly class names like `bg-orange` and `text-red`
+- Tailwind only imports color schemes you use, minimizing the bundle size
 - [No links in imported code](https://github.com/gaearon/base16-js/issues/5)
 - Automatically change the entire color scheme with `dark:` support from Tailwind
 - Color schemes are handled with modern CSS variables
-- Tailwind only imports color schemes you use, minimizing the bundle size
-- Built-in support for [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography)
-- Native support for TypeScript and Next.js App Router projects
+- Built-in support for TypeScript, Next.js, and [`@tailwindcss/typography`](https://github.com/tailwindlabs/tailwindcss-typography)
 
 ## Installation
 
