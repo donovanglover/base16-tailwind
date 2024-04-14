@@ -10,8 +10,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "git submodule update --init",
-    "install": "ts-node ./src/main.ts",
+    "install": "git submodule update --init && ts-node ./src/main.ts",
     "test": "jest"
   },
   "keywords": [
