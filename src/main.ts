@@ -63,7 +63,13 @@ function rgb (color: HEX): string {
 void (async () => {
   const schemes = await getSchemesFromPath('./schemes/base16')
 
-  const colorsArray = []
+  const colorsArray = [
+    `
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+    `
+  ]
 
   for (const [colorName, colorValues] of Object.entries(schemes)) {
     const colorShades = isLight(colorValues.base00)
