@@ -4,7 +4,7 @@ interface typographyProps {
   theme: (tailwindClass: string) => string
 }
 
-const tailwindConfig: Config = {
+export const base16Tailwind: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -72,4 +72,4 @@ const tailwindConfig: Config = {
   ]
 }
 
-export default tailwindConfig
+export default base16Tailwind
