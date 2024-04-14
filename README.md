@@ -10,58 +10,32 @@ Easily use [base16 color schemes](https://github.com/tinted-theming/schemes) wit
 
 ## Installation
 
-See the [jsr.io page](https://jsr.io/@donovanglover/base16).
+```fish
+npm add donovanglover/base16-tailwind
+```
 
 ## Usage
 
-### Use a single color scheme
+Color schemes are handled with CSS variables.
 
-tailwind.config.ts:
+base16-tailwind
+
+`tailwind.config.ts`.
 
 ```typescript
 import type { Config } from 'tailwindcss'
-import { monokai } from 'base16-tailwind'
+import base16Tailwind from 'base16-tailwind'
 
-const tailwindConfig: Config = {
-  theme: {
-    colors: monokai
-  }
-}
+const tailwindConfig: Config = {}
 
-export default tailwindConfig
+export default { ...base16Tailwind, ...tailwindConfig }
 ```
+
+### Use a single color scheme
 
 ### Use light and dark color schemes
 
-```typescript
-import type { Config } from 'tailwindcss'
-import { monokai } from 'base16-tailwind'
-
-const tailwindConfig: Config = {
-  theme: {
-    colors: monokai
-  }
-}
-
-export default tailwindConfig
-```
-
 ### Switch between multiple color schemes with CSS variables
-
-tailwind.config.ts:
-
-```typescript
-import type { Config } from 'tailwindcss'
-import { css } from 'base16-tailwind/css'
-
-const tailwindConfig: Config = {
-  theme: {
-    colors: css
-  }
-}
-
-export default tailwindConfig
-```
 
 main.css:
 
@@ -76,10 +50,8 @@ Available with `<div data-theme="monokai"></div>`
 
 ## Contributing
 
-Initial setup:
-
 ```fish
-bun install
+npm ci
 ```
 
 Make sure you're using an editor with an [ESLint language server](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint) enabled.
