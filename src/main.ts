@@ -96,7 +96,7 @@ void (async () => {
 
     colorsArray.push(`
       @layer base {
-        [data-theme="${colorName}"] {
+        .base16-${colorName} {
           --color-100: ${colorShades['100']};
           --color-200: ${colorShades['200']};
           --color-300: ${colorShades['300']};
