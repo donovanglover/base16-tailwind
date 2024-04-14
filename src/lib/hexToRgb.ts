@@ -1,4 +1,4 @@
-import { type HEX } from '@/types'
+import { type HEX } from '../types'
 import { colord } from 'colord'
 
 // Given: color in "#AABBCC"

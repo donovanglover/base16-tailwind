@@ -1,8 +1,8 @@
 import fs from 'node:fs/promises'
 import { join } from 'node:path'
 import YAML from 'yaml'
-import { isFile } from '@/lib/isFile'
-import type { Color, HEX, Palette } from '@/types'
+import { isFile } from './isFile'
+import type { Color, HEX, Palette } from '../types'
 
 export async function getSchemesFromPath (folderPath: string): Promise<Record<string, Palette>> {
   const schemes: Record<string, Palette> = {}
