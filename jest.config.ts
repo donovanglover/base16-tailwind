@@ -5,7 +5,6 @@ const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   collectCoverage: true,
-  collectCoverageFrom: ['./src/**/lib.ts'],
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
   }

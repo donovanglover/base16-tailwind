@@ -1,4 +1,4 @@
-import { getSchemesFromPath } from '../src/build/lib'
+import { getSchemesFromPath } from '../src/main'
 
 test('Returns correct JSON from YAML schemes', async () => {
   const result = await getSchemesFromPath('./schemes/base16')
