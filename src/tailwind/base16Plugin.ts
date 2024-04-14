@@ -2,9 +2,9 @@ import { type PluginAPI } from 'tailwindcss/types/config'
 import plugin from 'tailwindcss/plugin'
 import { hexToRgb } from '../lib/hexToRgb'
 import { getSchemesFromPath } from '../lib/getSchemesFromPath'
-import { type Palette } from '../types'
+import { type Base16ColorScheme } from '../types/Base16ColorScheme'
 
-const schemes: Record<string, Palette> = getSchemesFromPath('../../schemes/base16')
+const schemes: Record<string, Base16ColorScheme> = getSchemesFromPath('../../schemes/base16')
 
 export const base16Plugin = plugin(({ addUtilities }: PluginAPI): void => {
   for (const [colorName, colorValues] of Object.entries(schemes)) {
