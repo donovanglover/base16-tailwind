@@ -5,7 +5,7 @@
     "node": true
   },
 
-  "extends": "standard-with-typescript",
+  "extends": "love",
 
   "parserOptions": {
     "ecmaVersion": "latest",
