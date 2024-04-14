@@ -8,6 +8,7 @@ Easily use [base16 color schemes](https://github.com/tinted-theming/schemes) wit
 - Light to dark shades in order from `text-100` to `text-800`
 - [No links in imported code](https://github.com/gaearon/base16-js/issues/5)
 - Only import what you use
+- No need to manually specify light/dark colors (they change automatically based on theme)
 
 ## Installation
 
@@ -82,8 +83,8 @@ export default function RootLayout ({ children }: RootLayoutProps): React.ReactE
 'use client'
 
 const themes = [
-  "base16-monokai"
-  "base16-tarot"
+  "base16-monokai",
+  "base16-tarot",
   "base16-embers"
 ]
 
