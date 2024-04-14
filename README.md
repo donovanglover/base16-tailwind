@@ -79,3 +79,9 @@ export default function ChangeThemeButton (): React.ReactElement {
   )
 }
 ```
+
+## Stretch Goals
+
+- [ ] Simplify build process
+- [ ] Investigate writing as a Tailwind CSS plugin
+- [ ] Publish on JSR
