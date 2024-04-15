@@ -25,14 +25,17 @@ tailwind.config.ts:
 
 ```tsx
 import type { Config } from 'tailwindcss'
-import base16Tailwind from 'base16-tailwind'
+import { base16Config } from 'base16-tailwind'
 
-const tailwindConfig: Config = {
-  ...base16Tailwind,
-
+const projectConfig: Config = {
   future: {
     hoverOnlyWhenSupported: true
   }
+}
+
+const tailwindConfig: Config = {
+  ...base16Config,
+  ...projectConfig
 }
 
 export default tailwindConfig
@@ -41,7 +44,7 @@ export default tailwindConfig
 app/layout.tsx:
 
 ```tsx
-import "base16-tailwind/dist/schemes.css"
+import '@/app/globals.css'
 
 export interface RootLayoutProps {
   children: React.ReactNode
@@ -49,8 +52,8 @@ export interface RootLayoutProps {
 
 export default function RootLayout ({ children }: RootLayoutProps): React.ReactElement {
   return (
-    <html lang="en-US" className="base16-emil dark:base16-monokai">
-      <body className="text-100 bg-800">
+    <html lang='en-US' className='base16-emil dark:base16-monokai'>
+      <body className='text-100 bg-800'>
         {children}
       </body>
     </html>
@@ -64,9 +67,9 @@ components/ChangeThemeButton.tsx:
 'use client'
 
 const themes = [
-  "base16-monokai",
-  "base16-tarot",
-  "base16-embers"
+  'base16-danqing',
+  'base16-tarot',
+  'base16-embers'
 ]
 
 function changeTheme (): void {
@@ -82,6 +85,6 @@ export default function ChangeThemeButton (): React.ReactElement {
 
 ## Stretch Goals
 
-- [ ] Simplify build process
-- [ ] Investigate writing as a Tailwind CSS plugin
+- [x] Simplify build process
+- [x] Investigate writing as a Tailwind CSS plugin
 - [ ] Publish on JSR
