@@ -1,14 +1,7 @@
-import prettier from '@prettier/sync'
 import { diff } from 'jest-diff'
+import { formatCss } from '../helpers/formatCss'
 
 export type JestMessage = () => string
-
-function format (input: string): string {
-  return prettier.format(input, {
-    parser: 'css',
-    printWidth: 100
-  })
-}
 
 expect.extend({
   toIncludeCss (received: string, argument: string) {
@@ -18,8 +11,8 @@ expect.extend({
       promise: this.promise
     }
 
-    const actual = format(received)
-    const expected = format(argument)
+    const actual = formatCss(received)
+    const expected = formatCss(argument)
 
     const pass = actual.includes(expected)
 
@@ -28,8 +21,8 @@ expect.extend({
           return (
             this.utils.matcherHint('toIncludeCss', undefined, undefined, options) +
             '\n\n' +
-            `Expected: not ${this.utils.printExpected(format(received))}\n` +
-            `Received: ${this.utils.printReceived(format(argument))}`
+            `Expected: not ${this.utils.printExpected(actual)}\n` +
+            `Received: ${this.utils.printReceived(expected)}`
           )
         }
       : () => {

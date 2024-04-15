@@ -24,7 +24,7 @@ const config: Config = {
   },
 
   setupFilesAfterEnv: [
-    './tests/_customMatchers.ts'
+    './tests/matchers/toIncludeCss.ts'
   ]
 }
 
