@@ -16,6 +16,7 @@
     "yaml": "^2.4.1"
   },
   "devDependencies": {
+    "@prettier/sync": "^0.5.1",
     "@types/jest": "^29.5.12",
     "eslint-config-love": "^47.0.0",
     "ts-jest": "^29.1.2"
