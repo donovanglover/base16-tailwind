@@ -1,6 +1,6 @@
 # base16-tailwind
 
-Easily use [base16 color schemes](https://github.com/tinted-theming/schemes) with Tailwind CSS.
+Easily use [base16 color schemes](https://tinted-theming.github.io/base16-gallery/) with Tailwind CSS.
 
 ## Features
 
