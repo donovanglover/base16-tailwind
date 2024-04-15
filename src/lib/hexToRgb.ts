@@ -1,4 +1,4 @@
-import { type Base16ColorValue } from '../types/Base16ColorValue'
+import type { Base16ColorValue } from '../types/Base16ColorValue.d.ts'
 import { colord } from 'colord'
 
 export function hexToRgb (color: Base16ColorValue): string {

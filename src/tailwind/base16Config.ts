@@ -1,5 +1,5 @@
 import type { Config } from 'tailwindcss'
-import { type PluginAPI } from 'tailwindcss/types/config'
+import type { PluginAPI } from 'tailwindcss/types/config'
 import typographyPlugin from '@tailwindcss/typography'
 import { base16Plugin } from './base16Plugin'
 
