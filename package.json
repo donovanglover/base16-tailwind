@@ -7,6 +7,7 @@
   "description": "Easily use base16 color schemes with Tailwind CSS.",
   "main": "src/index.ts",
   "scripts": {
+    "postinstall": "patch-package",
     "test": "jest"
   },
   "dependencies": {
@@ -19,6 +20,7 @@
     "@prettier/sync": "^0.5.1",
     "@types/jest": "^29.5.12",
     "eslint-config-love": "^47.0.0",
+    "patch-package": "^8.0.0",
     "ts-jest": "^29.1.2"
   },
   "keywords": [

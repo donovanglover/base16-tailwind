@@ -1,0 +1,24 @@
+diff --git a/node_modules/make-synchronized/index.cjs b/node_modules/make-synchronized/index.cjs
+index 358f481..a5851b1 100644
+--- a/node_modules/make-synchronized/index.cjs
++++ b/node_modules/make-synchronized/index.cjs
+@@ -182,7 +182,6 @@ var ThreadsWorker = class {
+   #createWorker() {
+     const lock = IS_PRODUCTION ? {} : new lock_default();
+     const worker = new import_node_worker_threads2.Worker(WORKER_FILE, {
+-      execArgv: import_node_process.default.env.NODE_OPTIONS?.split(" "),
+       workerData: {
+         workerRunningSemaphore: lock.semaphore,
+         ...this.#workerData
+diff --git a/node_modules/make-synchronized/index.mjs b/node_modules/make-synchronized/index.mjs
+index 691fdfa..3464b5a 100644
+--- a/node_modules/make-synchronized/index.mjs
++++ b/node_modules/make-synchronized/index.mjs
+@@ -143,7 +143,6 @@ var ThreadsWorker = class {
+   #createWorker() {
+     const lock = IS_PRODUCTION ? {} : new lock_default();
+     const worker = new Worker(WORKER_FILE, {
+-      execArgv: process.env.NODE_OPTIONS?.split(" "),
+       workerData: {
+         workerRunningSemaphore: lock.semaphore,
+         ...this.#workerData
