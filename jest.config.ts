@@ -11,7 +11,7 @@ const config: Config = {
   ],
 
   coveragePathIgnorePatterns: [
-    './src/types/Base16ColorName.ts'
+    './src/types'
   ],
 
   setupFilesAfterEnv: [
