@@ -1,5 +1,5 @@
-import { runPluginWithConfig } from './helpers/runPluginWithConfig'
 import { base16Config } from '../src'
+import { runPluginWithConfig } from './helpers/runPluginWithConfig'
 
 const html = String.raw
 const css = String.raw
