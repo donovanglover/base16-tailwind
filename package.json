@@ -7,6 +7,7 @@
   "description": "Easily use base16 color schemes with Tailwind CSS.",
   "main": "src/index.ts",
   "scripts": {
+    "prepare": "test -d schemes || git clone https://github.com/tinted-theming/schemes --depth 1",
     "postinstall": "patch-package",
     "test": "jest",
     "lint": "eslint . --ext ts"
