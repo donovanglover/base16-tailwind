@@ -9,7 +9,7 @@ const schemes: Base16Scheme[] = getSchemesFromPath('../../schemes/base16')
 export const base16Plugin = plugin(({ addUtilities }: PluginAPI): void => {
   for (const scheme of schemes) {
     addUtilities({
-      [scheme.name]: {
+      ['.' + scheme.name]: {
         '--color-100': hexToRgb(scheme.base16Colors.base07),
         '--color-200': hexToRgb(scheme.base16Colors.base06),
         '--color-300': hexToRgb(scheme.base16Colors.base05),
