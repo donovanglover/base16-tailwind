@@ -83,8 +83,10 @@ export default function ChangeThemeButton (): React.ReactElement {
 }
 ```
 
-## Stretch Goals
+## Contributing
 
-- [x] Simplify build process
-- [x] Investigate writing as a Tailwind CSS plugin
-- [ ] Publish on JSR
+```fish
+npm ci
+npm run lint
+npm run test
+```
