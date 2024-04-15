@@ -5,6 +5,12 @@ const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   collectCoverage: true,
+  collectCoverageFrom: [
+    './src/**/*.ts'
+  ],
+  coveragePathIgnorePatterns: [
+    './src/types/Base16ColorName.ts'
+  ],
   setupFilesAfterEnv: [
     './tests/_customMatchers.ts'
   ]
