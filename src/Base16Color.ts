@@ -19,8 +19,8 @@ export class Base16Color {
     return this
   }
 
-  static isValid (maybeBase16Color: string): boolean {
-    return /^[0-9A-F]{6}$/i.test(maybeBase16Color)
+  static isValid (maybeBase16Color: unknown): boolean {
+    return typeof maybeBase16Color === 'string' && /^[0-9A-F]{6}$/i.test(maybeBase16Color)
   }
 
   get rgb (): string {
