@@ -1,4 +1,4 @@
-import slugify from 'slugify'
+import slug from 'slug'
 
 interface Base16Yaml {
   system: 'base16'
@@ -78,7 +78,7 @@ export class Base16Scheme {
     if (yaml.slug !== undefined) {
       this.name = `base16-${yaml.slug}`
     } else {
-      this.name = `base16-${slugify(yaml.name, { lower: true, strict: true })}`
+      this.name = `base16-${slug(yaml.name)}`
     }
 
     this.base16Colors = {
