@@ -20,12 +20,12 @@ export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
         const fileNameSlug = fileName.replace('.yaml', '')
 
         if (!scheme.name.includes(fileNameSlug)) {
-          console.warn(`WARNING: Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
+          console.warn(`WARNING(base16-tailwind): Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
         }
 
         schemes.push(scheme)
       } else {
-        console.warn(`WARNING: Got invalid Base16Yaml from file ${fileName}. It will not be included in the Tailwind CSS output.`)
+        console.warn(`WARNING(base16-tailwind): Got invalid Base16Yaml from file ${fileName}. It will not be included in the Tailwind CSS output.`)
       }
     }
   }
