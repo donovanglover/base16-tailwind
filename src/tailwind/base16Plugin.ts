@@ -4,14 +4,13 @@ import plugin from 'tailwindcss/plugin'
 import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
 import { getSchemesFromPath } from '../lib/getSchemesFromPath.ts'
 import { hexToRgb } from '../lib/hexToRgb.ts'
-import type { Base16Scheme } from '../types/Base16Scheme.d.ts'
 
 interface Base16Plugin {
   handler: PluginCreator
   config?: Partial<Config> | undefined
 }
 
-const schemes: Base16Scheme[] = getSchemesFromPath(path.join(__dirname, '../../schemes/base16'))
+const schemes = getSchemesFromPath(path.join(__dirname, '../../schemes/base16'))
 
 export const base16Plugin: Base16Plugin = plugin(({ addUtilities }: PluginAPI): void => {
   for (const scheme of schemes) {
