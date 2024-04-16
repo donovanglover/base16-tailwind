@@ -29,7 +29,7 @@ export function isBase16Palette (maybeBase16Palette: unknown): maybeBase16Palett
   }
 
   for (const value of Object.values(palette)) {
-    if (typeof value !== 'string' || !new Base16Color(value).valid) {
+    if (typeof value !== 'string' || !Base16Color.isValid(value)) {
       return false
     }
   }

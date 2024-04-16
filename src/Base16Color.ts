@@ -1,20 +1,20 @@
 import { colord } from 'colord'
 
 export class Base16Color {
-  readonly #color?: string
-  readonly #valid: boolean = false
+  readonly #color: string
 
-  constructor (maybeBase16Color: unknown) {
-    if (typeof maybeBase16Color === 'string' && /^[0-9A-F]{6}$/i.test(maybeBase16Color)) {
-      this.#valid = true
-      this.#color = maybeBase16Color
+  constructor (maybeBase16Color: string) {
+    if (!Base16Color.isValid(maybeBase16Color)) {
+      throw new Error(`Invalid Base16 color "${maybeBase16Color}" was given. Make sure that your color is in the format "FA113D" where there are 6 hexadecimal numbers without "#" at the beginning.`)
     }
+
+    this.#color = maybeBase16Color
 
     return this
   }
 
-  get valid (): boolean {
-    return this.#valid
+  static isValid (maybeBase16Color: string): boolean {
+    return /^[0-9A-F]{6}$/i.test(maybeBase16Color)
   }
 
   get rgb (): string {
