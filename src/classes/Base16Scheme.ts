@@ -50,15 +50,11 @@ for (let i = 0; i < 16; i++) {
 }
 
 function isBase16Palette (palette: object): palette is Base16Palette {
-  const actualKeys = []
-
-  for (const [key, value] of Object.entries(palette)) {
+  for (const value of Object.values(palette)) {
     if (typeof value !== 'string' || !isHexColor(value)) return false
-
-    actualKeys.push(key)
   }
 
-  return JSON.stringify(expectedKeys) === JSON.stringify(actualKeys)
+  return JSON.stringify(expectedKeys) === JSON.stringify(Object.keys(palette))
 }
 
 function isHexColor (maybeHexColor: string): boolean {
