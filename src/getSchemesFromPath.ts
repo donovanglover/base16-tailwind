@@ -2,7 +2,6 @@ import { lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import YAML from 'yaml'
 import { Base16Scheme } from './Base16Scheme.ts'
-import { Base16Yaml } from './Base16Yaml.ts'
 
 export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
   const schemes = []
@@ -13,7 +12,7 @@ export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
 
     if (lstatSync(filePath).isFile() && filePath.endsWith('.yaml')) {
       const fileContents = readFileSync(filePath, 'utf-8')
-      const yaml = new Base16Yaml(YAML.parse(fileContents))
+      const yaml = YAML.parse(fileContents)
       const scheme = new Base16Scheme(yaml)
       const fileNameSlug = fileName.replace('.yaml', '')
 
