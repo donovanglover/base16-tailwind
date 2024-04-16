@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "donovanglover/base16-tailwind",
   "description": "Easily use base16 color schemes with Tailwind CSS.",
-  "main": "src/index.ts",
+  "main": "src/lib.ts",
   "scripts": {
     "postinstall": "test -d schemes || git clone https://github.com/tinted-theming/schemes --depth 1",
     "prepare": "patch-package",
