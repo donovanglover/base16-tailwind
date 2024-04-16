@@ -49,7 +49,7 @@ for (let i = 0; i < 16; i++) {
   expectedKeys.push(`base0${i.toString(16).toUpperCase()}`)
 }
 
-function isBase16Palette (palette: Record<string, any>): palette is Base16Palette {
+function isBase16Palette (palette: object): palette is Base16Palette {
   const actualKeys = []
 
   for (const [key, value] of Object.entries(palette)) {
