@@ -30,7 +30,9 @@ interface Base16Yaml {
   palette: Base16Palette
 }
 
-function isBase16Yaml (yaml: unknown): yaml is Base16Yaml {
+function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
+  const yaml = maybeBase16Yaml
+
   if (yaml === null || typeof yaml !== 'object') return false
   if (!('system' in yaml) || yaml.system !== 'base16') return false
   if (!('name' in yaml) || typeof yaml.name !== 'string') return false
@@ -44,11 +46,17 @@ function isBase16Yaml (yaml: unknown): yaml is Base16Yaml {
 
 const expectedKeys = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
 
-function isBase16Palette (palette: unknown): palette is Base16Palette {
-  if (palette === null || typeof palette !== 'object') return false
+function isBase16Palette (maybeBase16Palette: unknown): maybeBase16Palette is Base16Palette {
+  const palette = maybeBase16Palette
+
+  if (palette === null || typeof palette !== 'object') {
+    return false
+  }
 
   for (const value of Object.values(palette)) {
-    if (typeof value !== 'string' || !isHexColor(value)) return false
+    if (typeof value !== 'string' || !isHexColor(value)) {
+      return false
+    }
   }
 
   return JSON.stringify(expectedKeys) === JSON.stringify(Object.keys(palette))
