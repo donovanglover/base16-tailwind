@@ -1,10 +1,15 @@
 import path from 'node:path'
+import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-import type { PluginAPI } from 'tailwindcss/types/config'
+import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
 import { getSchemesFromPath } from '../lib/getSchemesFromPath.ts'
 import { hexToRgb } from '../lib/hexToRgb.ts'
-import type { Base16Plugin } from '../types/Base16Plugin.d.ts'
 import type { Base16Scheme } from '../types/Base16Scheme.d.ts'
+
+interface Base16Plugin {
+  handler: PluginCreator
+  config?: Partial<Config> | undefined
+}
 
 const schemes: Base16Scheme[] = getSchemesFromPath(path.join(__dirname, '../../schemes/base16'))
 
