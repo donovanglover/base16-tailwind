@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import YAML from 'yaml'
-import { Base16Scheme, isBase16Yaml } from '../classes/Base16Scheme.ts'
+import { Base16Scheme } from './Base16Scheme.ts'
+import { isBase16Yaml } from './Base16Yaml.ts'
 import { isFile } from './isFile.ts'
 
 export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
