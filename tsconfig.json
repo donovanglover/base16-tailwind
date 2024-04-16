@@ -5,6 +5,7 @@
     "strict": true,
     "declaration": true,
     "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
     "outDir": "./dist"
   },
   "include": [
