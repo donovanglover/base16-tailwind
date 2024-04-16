@@ -1,4 +1,4 @@
-import { type Base16Palette, isBase16Palette } from './Base16Palette.ts'
+import { Base16Palette } from './Base16Palette.ts'
 
 const BASE16_YAML_HELP = 'Are you sure your .yaml file follows standards?'
 
@@ -36,7 +36,7 @@ export class Base16Yaml {
       ('slug' in yaml ? typeof yaml.slug === 'string' : true) &&
       'author' in yaml && typeof yaml.author === 'string' &&
       'variant' in yaml && (yaml.variant === 'light' || yaml.variant === 'dark') &&
-      'palette' in yaml && isBase16Palette(yaml.palette)
+      'palette' in yaml && Base16Palette.isValid(yaml.palette)
     )
   }
 }
