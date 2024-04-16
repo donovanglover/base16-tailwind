@@ -1,3 +1,5 @@
+import slugify from 'slugify'
+
 interface Base16Yaml {
   system: 'base16'
   name: string
@@ -76,11 +78,7 @@ export class Base16Scheme {
     if (yaml.slug !== undefined) {
       this.name = `base16-${yaml.slug}`
     } else {
-      this.name = `base16-${yaml.name
-        .toLowerCase()
-        .replaceAll(' ', '-')
-        .replaceAll('(', '')
-        .replaceAll(')', '')}`
+      this.name = `base16-${slugify(yaml.name, { lower: true, strict: true })}`
     }
 
     this.base16Colors = {
