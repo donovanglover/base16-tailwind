@@ -33,7 +33,7 @@ const BASE16_PALETTE_KEYS = JSON.stringify(
   )
 )
 
-function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
+export function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
   const yaml = maybeBase16Yaml
 
   return (
@@ -70,13 +70,9 @@ function isHexColor (maybeHexColor: string): boolean {
 export class Base16Scheme {
   readonly name: `base16-${string}`
   // TODO: Only parse what's needed; add plugin customization options?
-  base16Colors: Base16Palette
+  readonly base16Colors: Base16Palette
 
-  constructor (yaml: unknown) {
-    if (!isBase16Yaml(yaml)) {
-      throw Error('Invalid yaml')
-    }
-
+  constructor (yaml: Base16Yaml) {
     // TODO: Parse slug or slugify name if slug not found
     this.name = `base16-${yaml.name}`
 
