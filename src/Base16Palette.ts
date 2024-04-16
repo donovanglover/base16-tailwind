@@ -1,22 +1,22 @@
-import { isHexColor } from './isHexColor'
+import { Base16Color } from './Base16Color'
 
 export interface Base16Palette {
-  base00: string
-  base01: string
-  base02: string
-  base03: string
-  base04: string
-  base05: string
-  base06: string
-  base07: string
-  base08: string
-  base09: string
-  base0A: string
-  base0B: string
-  base0C: string
-  base0D: string
-  base0E: string
-  base0F: string
+  base00: Base16Color
+  base01: Base16Color
+  base02: Base16Color
+  base03: Base16Color
+  base04: Base16Color
+  base05: Base16Color
+  base06: Base16Color
+  base07: Base16Color
+  base08: Base16Color
+  base09: Base16Color
+  base0A: Base16Color
+  base0B: Base16Color
+  base0C: Base16Color
+  base0D: Base16Color
+  base0E: Base16Color
+  base0F: Base16Color
 }
 
 export const BASE16_PALETTE_KEYS = JSON.stringify(Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`))
@@ -29,7 +29,7 @@ export function isBase16Palette (maybeBase16Palette: unknown): maybeBase16Palett
   }
 
   for (const value of Object.values(palette)) {
-    if (typeof value !== 'string' || !isHexColor(value)) {
+    if (typeof value !== 'string' || !new Base16Color(value).valid) {
       return false
     }
   }

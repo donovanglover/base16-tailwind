@@ -1,5 +1,5 @@
-import { colord } from 'colord'
 import slug from 'slug'
+import { Base16Color } from './Base16Color'
 import { type Base16Palette } from './Base16Palette'
 import { type Base16Yaml } from './Base16Yaml'
 
@@ -15,7 +15,7 @@ export class Base16Scheme {
     }
 
     this.base16Colors = Object.entries(yaml.palette).reduce(
-      (p, [k, v]) => ({ ...p, [k]: colord(`#${v}`).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '') }), {}
+      (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
     ) as Base16Palette
   }
 }
