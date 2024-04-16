@@ -1,4 +1,4 @@
-import { getSchemesFromPath } from '../src/lib/getSchemesFromPath'
+import { getSchemesFromPath } from '../src/lib/getSchemesFromPath.ts'
 
 test('Returns correct JSON from YAML schemes', () => {
   const result = getSchemesFromPath('./schemes/base16')

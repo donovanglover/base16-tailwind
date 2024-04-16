@@ -1,5 +1,5 @@
 import { diff } from 'jest-diff'
-import { formatCss } from '../helpers/formatCss'
+import { formatCss } from '../helpers/formatCss.ts'
 
 export type JestMessage = () => string
 

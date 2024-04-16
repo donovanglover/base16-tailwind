@@ -1,7 +1,7 @@
 import typographyPlugin from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 import type { PluginAPI } from 'tailwindcss/types/config'
-import { base16Plugin } from './base16Plugin'
+import { base16Plugin } from './base16Plugin.ts'
 
 export const base16Config: Config = {
   content: [

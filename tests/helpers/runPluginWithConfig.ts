@@ -1,7 +1,7 @@
 import path from 'node:path'
 import postcss from 'postcss'
 import tailwind, { type Config } from 'tailwindcss'
-import { base16Plugin } from '../../src/lib'
+import { base16Plugin } from '../../src/lib.ts'
 
 type PostCSSResult = postcss.Result<postcss.Root>
 

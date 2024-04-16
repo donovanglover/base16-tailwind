@@ -1,4 +1,4 @@
-import { runPluginWithConfig } from './helpers/runPluginWithConfig'
+import { runPluginWithConfig } from './helpers/runPluginWithConfig.ts'
 
 const html = String.raw
 const css = String.raw
