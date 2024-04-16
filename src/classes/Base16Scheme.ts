@@ -26,7 +26,7 @@ interface Base16Palette {
   base0F: string
 }
 
-const base16PaletteKeys = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
+const BASE16_PALETTE_KEYS = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
 
 function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
   const yaml = maybeBase16Yaml
@@ -55,7 +55,7 @@ function isBase16Palette (maybeBase16Palette: unknown): maybeBase16Palette is Ba
     }
   }
 
-  return JSON.stringify(base16PaletteKeys) === JSON.stringify(Object.keys(palette))
+  return JSON.stringify(BASE16_PALETTE_KEYS) === JSON.stringify(Object.keys(palette))
 }
 
 function isHexColor (maybeHexColor: string): boolean {
