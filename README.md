@@ -85,8 +85,4 @@ export default function ChangeThemeButton (): React.ReactElement {
 
 ## Contributing
 
-```fish
-npm ci
-npm run lint
-npm run test
-```
+base16-tailwind has 100% test coverage and should be bug free. That said, contributions are welcome. Run `npm ci` to do a clean install and use the `lint` and `test` scripts to check your work.
