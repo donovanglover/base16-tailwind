@@ -19,12 +19,7 @@ export interface Base16Palette {
   base0F: string
 }
 
-const BASE16_PALETTE_KEYS = JSON.stringify(
-  Array.from(
-    { length: 16 },
-    (_, i) => `base0${i.toString(16).toUpperCase()}`
-  )
-)
+export const BASE16_PALETTE_KEYS = JSON.stringify(Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`))
 
 export function isBase16Palette (maybeBase16Palette: unknown): maybeBase16Palette is Base16Palette {
   const palette = maybeBase16Palette
