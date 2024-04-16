@@ -1,6 +1,6 @@
 import slug from 'slug'
 import { Base16Color } from './Base16Color.ts'
-import { type Base16Palette } from './Base16Palette.ts'
+import { Base16Palette } from './Base16Palette.ts'
 import { Base16Yaml } from './Base16Yaml.ts'
 
 export class Base16Scheme {
@@ -18,9 +18,9 @@ export class Base16Scheme {
       this.name = `base16-${slug(maybeBase16Yaml.name)}`
     }
 
-    this.base16Colors = Object.entries(maybeBase16Yaml.palette).reduce(
+    this.base16Colors = new Base16Palette(Object.entries(maybeBase16Yaml.palette).reduce(
       (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
-    ) as Base16Palette
+    ))
   }
 
   static isValid (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
