@@ -10,10 +10,6 @@ const config: Config = {
     './src/**/*.ts'
   ],
 
-  coveragePathIgnorePatterns: [
-    './src/types'
-  ],
-
   coverageThreshold: {
     global: {
       branches: 100,
