@@ -37,15 +37,16 @@ function isBase16Yaml (yaml: unknown): yaml is Base16Yaml {
   if ('slug' in yaml && typeof yaml.slug !== 'string') return false
   if (!('author' in yaml) || typeof yaml.author !== 'string') return false
   if (!('variant' in yaml) || (yaml.variant !== 'light' && yaml.variant !== 'dark')) return false
-  if (!('palette' in yaml) || yaml.palette === null || typeof yaml.palette !== 'object') return false
-  if (!isBase16Palette(yaml.palette)) return false
+  if (!('palette' in yaml) || !isBase16Palette(yaml.palette)) return false
 
   return true
 }
 
 const expectedKeys = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
 
-function isBase16Palette (palette: object): palette is Base16Palette {
+function isBase16Palette (palette: unknown): palette is Base16Palette {
+  if (palette === null || typeof palette !== 'object') return false
+
   for (const value of Object.values(palette)) {
     if (typeof value !== 'string' || !isHexColor(value)) return false
   }
