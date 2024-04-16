@@ -53,7 +53,6 @@ function isBase16Palette (palette: object): palette is Base16Palette {
   const actualKeys = []
 
   for (const [key, value] of Object.entries(palette)) {
-    if (typeof key !== 'string') return false
     if (typeof value !== 'string' || !isHexColor(value)) return false
 
     actualKeys.push(key)
