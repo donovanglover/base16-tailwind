@@ -29,15 +29,15 @@ interface Base16Palette {
 function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
   const yaml = maybeBase16Yaml
 
-  if (yaml === null || typeof yaml !== 'object') return false
-  if (!('system' in yaml) || yaml.system !== 'base16') return false
-  if (!('name' in yaml) || typeof yaml.name !== 'string') return false
-  if ('slug' in yaml && typeof yaml.slug !== 'string') return false
-  if (!('author' in yaml) || typeof yaml.author !== 'string') return false
-  if (!('variant' in yaml) || (yaml.variant !== 'light' && yaml.variant !== 'dark')) return false
-  if (!('palette' in yaml) || !isBase16Palette(yaml.palette)) return false
-
-  return true
+  return (!(
+    yaml === null || typeof yaml !== 'object' ||
+    !('system' in yaml) || yaml.system !== 'base16' ||
+    !('name' in yaml) || typeof yaml.name !== 'string' ||
+    ('slug' in yaml && typeof yaml.slug !== 'string') ||
+    !('author' in yaml) || typeof yaml.author !== 'string' ||
+    !('variant' in yaml) || (yaml.variant !== 'light' && yaml.variant !== 'dark') ||
+    !('palette' in yaml) || !isBase16Palette(yaml.palette)
+  ))
 }
 
 const expectedKeys = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
