@@ -1,7 +1,5 @@
 import { Base16Palette } from './Base16Palette.ts'
 
-const BASE16_YAML_HELP = 'Are you sure your .yaml file follows standards?'
-
 export class Base16Yaml {
   readonly system = 'base16'
   readonly name: string
@@ -9,14 +7,15 @@ export class Base16Yaml {
   readonly author: string
   readonly variant: 'light' | 'dark'
   readonly palette: Base16Palette
+  static readonly #BASE16_YAML_HELP = 'Are you sure your .yaml file follows standards?'
 
   constructor (maybeBase16Yaml: unknown) {
     if (maybeBase16Yaml === null || typeof maybeBase16Yaml !== 'object') {
-      throw new Error(`A non-object value was given as a Base16 yaml. ${BASE16_YAML_HELP}`)
+      throw new Error(`A non-object value was given as a Base16 yaml. ${Base16Yaml.#BASE16_YAML_HELP}`)
     }
 
     if (!Base16Yaml.isValid(maybeBase16Yaml)) {
-      throw new Error(`Invalid Base16 yaml "${JSON.stringify(maybeBase16Yaml)}" was given. ${BASE16_YAML_HELP}`)
+      throw new Error(`Invalid Base16 yaml "${JSON.stringify(maybeBase16Yaml)}" was given. ${Base16Yaml.#BASE16_YAML_HELP}`)
     }
 
     this.name = maybeBase16Yaml.name

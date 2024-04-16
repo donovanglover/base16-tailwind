@@ -17,8 +17,7 @@ export class Base16Palette {
   base0D: Base16Color
   base0E: Base16Color
   base0F: Base16Color
-
-  static BASE16_PALETTE_KEYS = JSON.stringify(Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`))
+  static readonly #BASE16_PALETTE_KEYS = JSON.stringify(Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`))
 
   constructor (maybeBase16Palette: unknown) {
     if (!Base16Palette.isValid(maybeBase16Palette)) {
@@ -56,6 +55,6 @@ export class Base16Palette {
       }
     }
 
-    return JSON.stringify(Object.keys(palette)) === this.BASE16_PALETTE_KEYS
+    return JSON.stringify(Object.keys(palette)) === this.#BASE16_PALETTE_KEYS
   }
 }
