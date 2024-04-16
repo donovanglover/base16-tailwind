@@ -1,7 +1,7 @@
 import { colord } from 'colord'
 import slug from 'slug'
-import { type Base16Palette } from '../helpers/isBase16Palette'
-import { type Base16Yaml } from '../helpers/isBase16Yaml'
+import { type Base16Palette } from './Base16Palette'
+import { type Base16Yaml } from './Base16Yaml'
 
 export class Base16Scheme {
   readonly name: `base16-${string}`
