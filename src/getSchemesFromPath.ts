@@ -11,7 +11,7 @@ export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
   for (const fileName of files) {
     const filePath = join(folderPath, fileName)
 
-    if (lstatSync(fileName).isFile() && filePath.endsWith('.yaml')) {
+    if (lstatSync(filePath).isFile() && filePath.endsWith('.yaml')) {
       const fileContents = readFileSync(filePath, 'utf-8')
       const yaml = YAML.parse(fileContents)
 
