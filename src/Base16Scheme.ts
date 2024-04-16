@@ -1,7 +1,7 @@
 import slug from 'slug'
-import { Base16Color } from './Base16Color'
-import { type Base16Palette } from './Base16Palette'
-import { type Base16Yaml } from './Base16Yaml'
+import { Base16Color } from './Base16Color.ts'
+import { type Base16Palette } from './Base16Palette.ts'
+import { type Base16Yaml } from './Base16Yaml.ts'
 
 export class Base16Scheme {
   readonly name: `base16-${string}`

@@ -1,4 +1,4 @@
-import { Base16Color } from './Base16Color'
+import { Base16Color } from './Base16Color.ts'
 
 export interface Base16Palette {
   base00: Base16Color

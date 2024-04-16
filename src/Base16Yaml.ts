@@ -1,4 +1,4 @@
-import { type Base16Palette, isBase16Palette } from './Base16Palette'
+import { type Base16Palette, isBase16Palette } from './Base16Palette.ts'
 
 export interface Base16Yaml {
   system: 'base16'
