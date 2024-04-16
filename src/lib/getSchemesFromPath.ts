@@ -17,6 +17,11 @@ export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
 
       if (isBase16Yaml(yaml)) {
         const scheme = new Base16Scheme(yaml)
+        const fileNameSlug = fileName.replace('.yaml', '')
+
+        if (!scheme.name.includes(fileNameSlug)) {
+          console.warn(`WARNING: Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
+        }
 
         schemes.push(scheme)
       } else {
