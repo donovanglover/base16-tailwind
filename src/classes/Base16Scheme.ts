@@ -1,3 +1,4 @@
+import { colord } from 'colord'
 import slug from 'slug'
 
 interface Base16Yaml {
@@ -71,7 +72,6 @@ function isHexColor (maybeHexColor: string): boolean {
 
 export class Base16Scheme {
   readonly name: `base16-${string}`
-  // TODO: Only parse what's needed; add plugin customization options?
   readonly base16Colors: Base16Palette
 
   constructor (yaml: Base16Yaml) {
@@ -81,23 +81,8 @@ export class Base16Scheme {
       this.name = `base16-${slug(yaml.name)}`
     }
 
-    this.base16Colors = {
-      base00: `#${yaml.palette.base00}`,
-      base01: `#${yaml.palette.base01}`,
-      base02: `#${yaml.palette.base02}`,
-      base03: `#${yaml.palette.base03}`,
-      base04: `#${yaml.palette.base04}`,
-      base05: `#${yaml.palette.base05}`,
-      base06: `#${yaml.palette.base06}`,
-      base07: `#${yaml.palette.base07}`,
-      base08: `#${yaml.palette.base08}`,
-      base09: `#${yaml.palette.base09}`,
-      base0A: `#${yaml.palette.base0A}`,
-      base0B: `#${yaml.palette.base0B}`,
-      base0C: `#${yaml.palette.base0C}`,
-      base0D: `#${yaml.palette.base0D}`,
-      base0E: `#${yaml.palette.base0E}`,
-      base0F: `#${yaml.palette.base0F}`
-    }
+    this.base16Colors = Object.entries(yaml.palette).reduce(
+      (p, [k, v]) => ({ ...p, [k]: colord(`#${v}`).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '') }), {}
+    ) as Base16Palette
   }
 }
