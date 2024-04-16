@@ -73,8 +73,15 @@ export class Base16Scheme {
   readonly base16Colors: Base16Palette
 
   constructor (yaml: Base16Yaml) {
-    // TODO: Parse slug or slugify name if slug not found
-    this.name = `base16-${yaml.name}`
+    if (yaml.slug !== undefined) {
+      this.name = `base16-${yaml.slug}`
+    } else {
+      this.name = `base16-${yaml.name
+        .toLowerCase()
+        .replaceAll(' ', '-')
+        .replaceAll('(', '')
+        .replaceAll(')', '')}`
+    }
 
     this.base16Colors = {
       base00: `#${yaml.palette.base00}`,
