@@ -1,26 +1,3 @@
-enum Base16ColorName {
-  base00 = 'base00',
-  base01 = 'base01',
-  base02 = 'base02',
-  base03 = 'base03',
-  base04 = 'base04',
-  base05 = 'base05',
-  base06 = 'base06',
-  base07 = 'base07',
-  base08 = 'base08',
-  base09 = 'base09',
-  base0A = 'base0A',
-  base0B = 'base0B',
-  base0C = 'base0C',
-  base0D = 'base0D',
-  base0E = 'base0E',
-  base0F = 'base0F',
-}
-
-type Base16ColorValue = `#${string}`
-type Base16SchemeColors = Record<Base16ColorName, Base16ColorValue>
-type Base16Palette = Record<Base16ColorName, string>
-
 interface Base16Yaml {
   system: 'base16'
   name: string
@@ -28,6 +5,25 @@ interface Base16Yaml {
   author: string
   variant: 'light' | 'dark'
   palette: Base16Palette
+}
+
+interface Base16Palette {
+  base00: string
+  base01: string
+  base02: string
+  base03: string
+  base04: string
+  base05: string
+  base06: string
+  base07: string
+  base08: string
+  base09: string
+  base0A: string
+  base0B: string
+  base0C: string
+  base0D: string
+  base0E: string
+  base0F: string
 }
 
 function isBase16Yaml (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
@@ -68,7 +64,8 @@ function isHexColor (maybeHexColor: string): boolean {
 
 export class Base16Scheme {
   readonly name: `base16-${string}`
-  base16Colors: Base16SchemeColors
+  // TODO: Only parse what's needed; add plugin customization options?
+  base16Colors: Base16Palette
 
   constructor (yaml: unknown) {
     if (!isBase16Yaml(yaml)) {
