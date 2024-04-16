@@ -2,7 +2,7 @@ import path from 'node:path'
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
-import { getSchemesFromPath } from '../getSchemesFromPath.ts'
+import { getSchemesFromPath } from './getSchemesFromPath.ts'
 
 interface Base16Plugin {
   handler: PluginCreator
