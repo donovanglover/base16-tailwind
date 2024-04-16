@@ -43,11 +43,7 @@ function isBase16Yaml (yaml: unknown): yaml is Base16Yaml {
   return true
 }
 
-const expectedKeys: string[] = []
-
-for (let i = 0; i < 16; i++) {
-  expectedKeys.push(`base0${i.toString(16).toUpperCase()}`)
-}
+const expectedKeys = Array.from({ length: 16 }, (_, i) => `base0${i.toString(16).toUpperCase()}`)
 
 function isBase16Palette (palette: object): palette is Base16Palette {
   for (const value of Object.values(palette)) {
