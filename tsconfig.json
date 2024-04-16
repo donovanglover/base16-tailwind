@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2021",
-    "module": "commonjs",
-    "esModuleInterop": true,
+    "module": "nodenext",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "declaration": true,
