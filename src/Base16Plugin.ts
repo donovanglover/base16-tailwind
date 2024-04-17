@@ -1,16 +1,16 @@
-import path from 'node:path'
 import { type PluginCreator } from 'tailwindcss/types/config'
 import { type Base16Options } from './Base16Options.ts'
-import { getSchemesFromPath } from './getSchemesFromPath.ts'
-
-const schemes = getSchemesFromPath(path.join(__dirname, '../schemes/base16'))
+import { Base16Path } from './Base16Path.ts'
 
 export class Base16Plugin {
-  creator: PluginCreator
+  readonly creator: PluginCreator
+  readonly #base16Path: Base16Path
 
   constructor (options?: Base16Options) {
+    this.#base16Path = new Base16Path(options?.customPath)
+
     this.creator = ({ addUtilities }) => {
-      for (const scheme of schemes) {
+      for (const scheme of this.#base16Path.schemes) {
         addUtilities({
           ['.' + scheme.name]: {
             '--color-100': scheme.base16Colors.base07.rgb,

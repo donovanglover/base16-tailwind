@@ -4,21 +4,21 @@ import YAML from 'yaml'
 import { Base16Scheme } from './Base16Scheme.ts'
 
 export class Base16Path {
+  static readonly DEFAULT_PATH = join(__dirname, '../schemes/base16')
   readonly schemes: Base16Scheme[] = []
+  readonly path: string
 
-  constructor (maybeBase16Path: unknown) {
-    if (maybeBase16Path === null || typeof maybeBase16Path !== 'string') {
-      throw new Error('A non-string value was given as a Base16 path.')
-    }
+  constructor (maybeBase16Path?: unknown) {
+    this.path = typeof maybeBase16Path === 'string' ? maybeBase16Path : Base16Path.DEFAULT_PATH
 
-    if (!existsSync(maybeBase16Path)) {
+    if (!existsSync(this.path)) {
       throw new Error(`Invalid Base16 path "${JSON.stringify(maybeBase16Path)}" was given.`)
     }
 
-    const files = readdirSync(maybeBase16Path)
+    const files = readdirSync(this.path)
 
     for (const fileName of files) {
-      const filePath = join(maybeBase16Path, fileName)
+      const filePath = join(this.path, fileName)
 
       if (lstatSync(filePath).isFile() && filePath.endsWith('.yaml')) {
         const fileContents = readFileSync(filePath, 'utf-8')
