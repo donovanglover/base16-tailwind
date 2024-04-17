@@ -9,7 +9,7 @@ export class Base16Path {
   readonly path: string
 
   constructor (maybePath?: unknown) {
-    this.path = typeof maybePath === 'string' ? maybePath : Base16Path.DEFAULT_PATH
+    this.path = typeof maybePath === 'string' ? join(process.cwd(), maybePath) : Base16Path.DEFAULT_PATH
 
     if (!existsSync(this.path)) {
       throw new Error(`Invalid Base16 path "${JSON.stringify(this.path)}" was given.`)
