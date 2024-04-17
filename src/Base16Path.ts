@@ -1,5 +1,6 @@
 import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
+import { cwd } from 'node:process'
 import YAML from 'yaml'
 import { Base16Scheme } from './Base16Scheme.ts'
 
@@ -9,7 +10,7 @@ export class Base16Path {
   readonly path: string
 
   constructor (maybePath?: unknown) {
-    this.path = typeof maybePath === 'string' ? join(process.cwd(), maybePath) : Base16Path.DEFAULT_PATH
+    this.path = typeof maybePath === 'string' ? join(cwd(), maybePath) : Base16Path.DEFAULT_PATH
 
     if (!existsSync(this.path)) {
       throw new Error(`Invalid Base16 path "${JSON.stringify(this.path)}" was given.`)
