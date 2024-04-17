@@ -25,4 +25,16 @@ export class Base16Color {
   get rgb (): string {
     return colord(`#${this.#color}`).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '')
   }
+
+  get hsl (): string {
+    return colord(`#${this.#color}`).toHslString().split('(')[1].split(')')[0].replaceAll(',', '')
+  }
+
+  get rgba (): string {
+    return colord(`#${this.#color}`).toRgbString().split('(')[1].split(')')[0]
+  }
+
+  get hsla (): string {
+    return colord(`#${this.#color}`).toHslString().split('(')[1].split(')')[0]
+  }
 }

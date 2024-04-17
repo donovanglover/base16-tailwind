@@ -24,4 +24,28 @@ describe('Base16Color', () => {
       void new Base16Color('A3B')
     }).toThrow()
   })
+
+  describe('rgb', () => {
+    it('should convert "1AD1E5" to "26 209 229"', () => {
+      expect(new Base16Color('1AD1E5').rgb).toBe('26 209 229')
+    })
+  })
+
+  describe('rgba', () => {
+    it('should convert "1AD1E5" to "26, 209, 229"', () => {
+      expect(new Base16Color('1AD1E5').rgba).toBe('26, 209, 229')
+    })
+  })
+
+  describe('hsl', () => {
+    it('should convert "1AD1E5" to "186 80% 50%"', () => {
+      expect(new Base16Color('1AD1E5').hsl).toBe('186 80% 50%')
+    })
+  })
+
+  describe('hsla', () => {
+    it('should convert "1AD1E5" to "186, 80%, 50%"', () => {
+      expect(new Base16Color('1AD1E5').hsla).toBe('186, 80%, 50%')
+    })
+  })
 })
