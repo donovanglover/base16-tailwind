@@ -26,8 +26,8 @@ export class Base16Path {
         const scheme = new Base16Scheme(yaml)
         const fileNameSlug = fileName.replace('.yaml', '')
 
-        if (!scheme.name.includes(fileNameSlug)) {
-          console.warn(`WARNING(base16-tailwind): Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
+        if (scheme.name !== `base16-${fileNameSlug}`) {
+          throw new Error(`File "${fileName}" is invalid. The slug from the YAML data differs from the slug of the file name.`)
         }
 
         this.schemes.push(scheme)
