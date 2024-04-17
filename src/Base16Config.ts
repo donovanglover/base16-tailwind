@@ -1,7 +1,6 @@
 import typographyPlugin from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 import type { ContentConfig, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
-import { base16Plugin } from './base16Plugin.ts'
 
 export interface Base16ConfigOptions {
   withTypography: boolean
@@ -25,8 +24,6 @@ export class Base16Config implements Config {
   plugins: PluginsConfig = []
 
   constructor (options?: Base16ConfigOptions) {
-    this.plugins.push(base16Plugin)
-
     this.theme.colors = {
       100: 'rgb(var(--color-100) / <alpha-value>)',
       200: 'rgb(var(--color-200) / <alpha-value>)',
@@ -49,38 +46,42 @@ export class Base16Config implements Config {
     if (options === undefined) return
 
     if (options.withFontOverride) {
-      this.theme.extend.fontFamily = {
-        sans: ['var(--font-sans)'],
-        serif: ['var(--font-serif)'],
-        mono: ['var(--font-mono)']
+      this.theme.extend = {
+        fontFamily: {
+          sans: ['var(--font-sans)'],
+          serif: ['var(--font-serif)'],
+          mono: ['var(--font-mono)']
+        }
       }
     }
 
     if (options.withTypography) {
       this.plugins.push(typographyPlugin)
 
-      this.theme.extend.typography = ({ theme }: PluginAPI) => ({
-        DEFAULT: {
-          css: {
-            '--tw-prose-body': theme('colors[100]'),
-            '--tw-prose-headings': theme('colors[100]'),
-            '--tw-prose-lead': theme('colors[100]'),
-            '--tw-prose-links': theme('colors.blue'),
-            '--tw-prose-bold': theme('colors[100]'),
-            '--tw-prose-counters': theme('colors[100]'),
-            '--tw-prose-bullets': theme('colors[100]'),
-            '--tw-prose-hr': theme('colors[100]'),
-            '--tw-prose-quotes': theme('colors[100]'),
-            '--tw-prose-quote-borders': theme('colors[100]'),
-            '--tw-prose-captions': theme('colors[100]'),
-            '--tw-prose-code': theme('colors[100]'),
-            '--tw-prose-pre-code': theme('colors[100]'),
-            '--tw-prose-pre-bg': theme('colors[100]'),
-            '--tw-prose-th-borders': theme('colors[100]'),
-            '--tw-prose-td-borders': theme('colors[100]')
+      this.theme.extend = {
+        typography: ({ theme }: PluginAPI) => ({
+          DEFAULT: {
+            css: {
+              '--tw-prose-body': theme('colors[100]'),
+              '--tw-prose-headings': theme('colors[100]'),
+              '--tw-prose-lead': theme('colors[100]'),
+              '--tw-prose-links': theme('colors.blue'),
+              '--tw-prose-bold': theme('colors[100]'),
+              '--tw-prose-counters': theme('colors[100]'),
+              '--tw-prose-bullets': theme('colors[100]'),
+              '--tw-prose-hr': theme('colors[100]'),
+              '--tw-prose-quotes': theme('colors[100]'),
+              '--tw-prose-quote-borders': theme('colors[100]'),
+              '--tw-prose-captions': theme('colors[100]'),
+              '--tw-prose-code': theme('colors[100]'),
+              '--tw-prose-pre-code': theme('colors[100]'),
+              '--tw-prose-pre-bg': theme('colors[100]'),
+              '--tw-prose-th-borders': theme('colors[100]'),
+              '--tw-prose-td-borders': theme('colors[100]')
+            }
           }
-        }
-      })
+        })
+      }
     }
   }
 }
