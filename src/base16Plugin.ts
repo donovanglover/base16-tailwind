@@ -1,7 +1,6 @@
 import path from 'node:path'
-import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
-import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
+import type { Config, PluginCreator } from 'tailwindcss/types/config'
 import { Base16Config, type Base16ConfigOptions } from './Base16Config.ts'
 import { getSchemesFromPath } from './getSchemesFromPath.ts'
 
@@ -12,7 +11,7 @@ function base16Config (options?: Base16ConfigOptions): Config {
 }
 
 function base16Handler (options?: Base16ConfigOptions): PluginCreator {
-  return ({ addUtilities }: PluginAPI): void => {
+  return ({ addUtilities }) => {
     for (const scheme of schemes) {
       addUtilities({
         ['.' + scheme.name]: {
