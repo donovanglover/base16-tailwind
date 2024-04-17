@@ -6,6 +6,18 @@ describe('Base16Palette', () => {
     expect(new Base16Palette(randomScheme())).toBeDefined()
   })
 
+  it('should error if null', () => {
+    expect(() => {
+      void new Base16Palette(null)
+    }).toThrow()
+  })
+
+  it('should error if not object', () => {
+    expect(() => {
+      void new Base16Palette(727)
+    }).toThrow()
+  })
+
   it('should error if missing base values', () => {
     expect(() => {
       void new Base16Palette({ base07: 'DECADE' })

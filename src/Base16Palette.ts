@@ -1,5 +1,4 @@
 import { Base16Color } from './Base16Color.ts'
-import { type Base16Options } from './Base16Options.ts'
 
 export class Base16Palette {
   base00: Base16Color

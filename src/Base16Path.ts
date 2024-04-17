@@ -8,11 +8,11 @@ export class Base16Path {
   readonly schemes: Base16Scheme[] = []
   readonly path: string
 
-  constructor (maybeBase16Path?: unknown) {
-    this.path = typeof maybeBase16Path === 'string' ? maybeBase16Path : Base16Path.DEFAULT_PATH
+  constructor (maybePath?: unknown) {
+    this.path = typeof maybePath === 'string' ? maybePath : Base16Path.DEFAULT_PATH
 
     if (!existsSync(this.path)) {
-      throw new Error(`Invalid Base16 path "${JSON.stringify(maybeBase16Path)}" was given.`)
+      throw new Error(`Invalid Base16 path "${JSON.stringify(this.path)}" was given.`)
     }
 
     const files = readdirSync(this.path)
