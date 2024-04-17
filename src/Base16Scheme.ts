@@ -3,7 +3,7 @@ import { Base16Color } from './Base16Color.ts'
 import { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Scheme {
-  readonly system = 'base16'
+  readonly system? = 'base16'
   readonly name: string
   readonly slug?: string
   readonly author: string
@@ -38,7 +38,7 @@ export class Base16Scheme {
 
     return (
       scheme !== null && typeof scheme === 'object' &&
-      'system' in scheme && scheme.system === 'base16' &&
+      ('system' in scheme ? scheme.system === 'base16' : true) &&
       'name' in scheme && typeof scheme.name === 'string' &&
       ('slug' in scheme ? typeof scheme.slug === 'string' : true) &&
       'author' in scheme && typeof scheme.author === 'string' &&
