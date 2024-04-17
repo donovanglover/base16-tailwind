@@ -13,11 +13,11 @@ export class Base16Color {
       throw new Error(`Invalid Base16 color "${maybeBase16Color}" was given. ${Base16Color.#BASE16_COLOR_HELP}`)
     }
 
-    this.#color = maybeBase16Color
+    this.#color = maybeBase16Color.replace('#', '')
   }
 
   static isValid (maybeBase16Color: unknown): boolean {
-    return typeof maybeBase16Color === 'string' && /^[0-9A-F]{6}$/i.test(maybeBase16Color)
+    return typeof maybeBase16Color === 'string' && /^(?:#)?[0-9A-F]{6}$/i.test(maybeBase16Color)
   }
 
   get rgb (): string {
