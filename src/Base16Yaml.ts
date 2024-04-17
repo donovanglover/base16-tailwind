@@ -4,7 +4,7 @@ import { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Yaml {
   readonly system = 'base16'
-  readonly name: `base16-${string}`
+  readonly name: string
   readonly slug?: string
   readonly author: string
   readonly variant: 'light' | 'dark'
@@ -23,9 +23,9 @@ export class Base16Yaml {
 
     this.name = maybeBase16Yaml.slug !== undefined ? `base16-${maybeBase16Yaml.slug}` : `base16-${slug(maybeBase16Yaml.name)}`
 
-    this.base16Colors = new Base16Palette(Object.entries(maybeBase16Yaml.palette).reduce(
+    this.base16Colors = Object.entries(maybeBase16Yaml.palette).reduce(
       (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
-    ))
+    ) as Base16Palette
 
     this.slug = maybeBase16Yaml.slug
     this.author = maybeBase16Yaml.author

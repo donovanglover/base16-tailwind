@@ -7,7 +7,7 @@ test('Returns base16 class when included in html', async () => {
   const config = {
     content: [
       {
-        raw: html`<div class="base16-monokai text-100 bg-800">Hello World</div>`
+        raw: html`<div class="base16-monokai">Hello World</div>`
       }
     ]
   }

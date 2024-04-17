@@ -9,7 +9,7 @@ interface Base16Plugin {
   config?: Partial<Config> | undefined
 }
 
-const schemes = getSchemesFromPath(path.join(__dirname, '../../schemes/base16'))
+const schemes = getSchemesFromPath(path.join(__dirname, '../schemes/base16'))
 
 export const base16Plugin: Base16Plugin = plugin(({ addUtilities }: PluginAPI): void => {
   for (const scheme of schemes) {

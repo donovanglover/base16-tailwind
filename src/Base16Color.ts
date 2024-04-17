@@ -14,8 +14,6 @@ export class Base16Color {
     }
 
     this.#color = maybeBase16Color
-
-    return this
   }
 
   static isValid (maybeBase16Color: unknown): boolean {
