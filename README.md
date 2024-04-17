@@ -24,18 +24,13 @@ npm add donovanglover/base16-tailwind
 tailwind.config.ts:
 
 ```tsx
-import type { Config } from 'tailwindcss'
-import { base16Config } from 'base16-tailwind'
+import base16Tailwind from 'base16-tailwind'
+import type { Config } from 'tailwindcss/types/config'
 
-const projectConfig: Config = {
-  future: {
-    hoverOnlyWhenSupported: true
-  }
-}
-
-const tailwindConfig: Config = {
-  ...base16Config,
-  ...projectConfig
+const tailwindConfig: Partial<Config> = {
+  plugins: [
+    base16Tailwind
+  ]
 }
 
 export default tailwindConfig
