@@ -24,7 +24,7 @@ export class Base16Config implements Config {
 
   plugins: PluginsConfig = []
 
-  constructor (options: Base16ConfigOptions) {
+  constructor (options?: Base16ConfigOptions) {
     this.plugins.push(base16Plugin)
 
     this.theme.colors = {
@@ -45,6 +45,8 @@ export class Base16Config implements Config {
       purple: 'rgb(var(--color-purple) / <alpha-value>)',
       pink: 'rgb(var(--color-pink) / <alpha-value>)'
     }
+
+    if (options === undefined) return
 
     if (options.withFontOverride) {
       this.theme.extend.fontFamily = {

@@ -2,6 +2,7 @@ import path from 'node:path'
 import type { Config } from 'tailwindcss'
 import plugin from 'tailwindcss/plugin'
 import type { PluginAPI, PluginCreator } from 'tailwindcss/types/config'
+import { Base16Config } from './Base16Config.ts'
 import { getSchemesFromPath } from './getSchemesFromPath.ts'
 
 interface Base16Plugin {
@@ -10,6 +11,8 @@ interface Base16Plugin {
 }
 
 const schemes = getSchemesFromPath(path.join(__dirname, '../schemes/base16'))
+
+const config = new Base16Config()
 
 export const base16Plugin: Base16Plugin = plugin(({ addUtilities }: PluginAPI): void => {
   for (const scheme of schemes) {
@@ -35,4 +38,4 @@ export const base16Plugin: Base16Plugin = plugin(({ addUtilities }: PluginAPI): 
       }
     })
   }
-})
+}, config)
