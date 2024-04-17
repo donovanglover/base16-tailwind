@@ -1,28 +1,37 @@
-import { lstatSync, readdirSync, readFileSync } from 'node:fs'
+import { existsSync, lstatSync, readdirSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import YAML from 'yaml'
 import { Base16Scheme } from './Base16Scheme.ts'
 
-export function getSchemesFromPath (folderPath: string): Base16Scheme[] {
-  const schemes = []
-  const files = readdirSync(folderPath)
+export class Base16Path {
+  readonly schemes: Base16Scheme[] = []
 
-  for (const fileName of files) {
-    const filePath = join(folderPath, fileName)
+  constructor (maybeBase16Path: unknown) {
+    if (maybeBase16Path === null || typeof maybeBase16Path !== 'string') {
+      throw new Error('A non-string value was given as a Base16 path.')
+    }
 
-    if (lstatSync(filePath).isFile() && filePath.endsWith('.yaml')) {
-      const fileContents = readFileSync(filePath, 'utf-8')
-      const yaml = YAML.parse(fileContents)
-      const scheme = new Base16Scheme(yaml)
-      const fileNameSlug = fileName.replace('.yaml', '')
+    if (!existsSync(maybeBase16Path)) {
+      throw new Error(`Invalid Base16 path "${JSON.stringify(maybeBase16Path)}" was given.`)
+    }
 
-      if (!scheme.name.includes(fileNameSlug)) {
-        console.warn(`WARNING(base16-tailwind): Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
+    const files = readdirSync(maybeBase16Path)
+
+    for (const fileName of files) {
+      const filePath = join(maybeBase16Path, fileName)
+
+      if (lstatSync(filePath).isFile() && filePath.endsWith('.yaml')) {
+        const fileContents = readFileSync(filePath, 'utf-8')
+        const yaml = YAML.parse(fileContents)
+        const scheme = new Base16Scheme(yaml)
+        const fileNameSlug = fileName.replace('.yaml', '')
+
+        if (!scheme.name.includes(fileNameSlug)) {
+          console.warn(`WARNING(base16-tailwind): Got a className of ${scheme.name} for ${fileName}. This means that the slug from the YAML data differs from the slug of the file name.`)
+        }
+
+        this.schemes.push(scheme)
       }
-
-      schemes.push(scheme)
     }
   }
-
-  return schemes
 }
