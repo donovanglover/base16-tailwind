@@ -1,7 +1,7 @@
 import path from 'node:path'
 import postcss from 'postcss'
 import tailwind, { type Config } from 'tailwindcss'
-import { base16Plugin } from '../../src/lib.ts'
+import { Base16Plugin } from '../../src/Base16Plugin.ts'
 
 type PostCSSResult = postcss.Result<postcss.Root>
 
@@ -9,7 +9,7 @@ export async function runPluginWithConfig (config: Config, plugin = tailwind): P
   const { currentTestName } = expect.getState()
 
   config = {
-    ...{ plugins: [base16Plugin], corePlugins: { preflight: false } },
+    ...{ plugins: [new Base16Plugin().creator], corePlugins: { preflight: false } },
     ...config
   }
 
