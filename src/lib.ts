@@ -12,6 +12,14 @@ function base16Config (options?: Base16Options): Config {
   return new Base16Config(options)
 }
 
-export const base16Tailwind = plugin.withOptions(base16Handler, base16Config)
+interface Base16Tailwind {
+  (options: Base16Options | undefined): {
+    handler: PluginCreator
+    config?: Partial<Config> | undefined
+  }
+  __isOptionsFunction: true
+}
+
+export const base16Tailwind: Base16Tailwind = plugin.withOptions(base16Handler, base16Config)
 
 export default base16Tailwind
