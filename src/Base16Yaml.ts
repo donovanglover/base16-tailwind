@@ -2,7 +2,7 @@ import slug from 'slug'
 import { Base16Color } from './Base16Color.ts'
 import { Base16Palette } from './Base16Palette.ts'
 
-export class Base16Yaml {
+export class Base16Scheme {
   readonly system = 'base16'
   readonly name: string
   readonly slug?: string
@@ -10,40 +10,40 @@ export class Base16Yaml {
   readonly variant: 'light' | 'dark'
   readonly palette: Base16Palette
   readonly base16Colors: Base16Palette
-  static readonly #BASE16_YAML_HELP = 'Are you sure your .yaml file follows standards?'
+  static readonly #BASE16_SCHEME_HELP = 'Are you sure your imported file or JSON object follows standards?'
 
-  constructor (maybeBase16Yaml: unknown) {
-    if (maybeBase16Yaml === null || typeof maybeBase16Yaml !== 'object') {
-      throw new Error(`A non-object value was given as a Base16 yaml. ${Base16Yaml.#BASE16_YAML_HELP}`)
+  constructor (maybeBase16Scheme: unknown) {
+    if (maybeBase16Scheme === null || typeof maybeBase16Scheme !== 'object') {
+      throw new Error(`A non-object value was given as a Base16 scheme. ${Base16Scheme.#BASE16_SCHEME_HELP}`)
     }
 
-    if (!Base16Yaml.isValid(maybeBase16Yaml)) {
-      throw new Error(`Invalid Base16 yaml "${JSON.stringify(maybeBase16Yaml)}" was given. ${Base16Yaml.#BASE16_YAML_HELP}`)
+    if (!Base16Scheme.isValid(maybeBase16Scheme)) {
+      throw new Error(`Invalid Base16 scheme "${JSON.stringify(maybeBase16Scheme)}" was given. ${Base16Scheme.#BASE16_SCHEME_HELP}`)
     }
 
-    this.name = maybeBase16Yaml.slug !== undefined ? `base16-${maybeBase16Yaml.slug}` : `base16-${slug(maybeBase16Yaml.name)}`
+    this.name = maybeBase16Scheme.slug !== undefined ? `base16-${maybeBase16Scheme.slug}` : `base16-${slug(maybeBase16Scheme.name)}`
 
-    this.base16Colors = Object.entries(maybeBase16Yaml.palette).reduce(
+    this.base16Colors = Object.entries(maybeBase16Scheme.palette).reduce(
       (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
     ) as Base16Palette
 
-    this.slug = maybeBase16Yaml.slug
-    this.author = maybeBase16Yaml.author
-    this.variant = maybeBase16Yaml.variant
-    this.palette = maybeBase16Yaml.palette
+    this.slug = maybeBase16Scheme.slug
+    this.author = maybeBase16Scheme.author
+    this.variant = maybeBase16Scheme.variant
+    this.palette = maybeBase16Scheme.palette
   }
 
-  static isValid (maybeBase16Yaml: unknown): maybeBase16Yaml is Base16Yaml {
-    const yaml = maybeBase16Yaml
+  static isValid (maybeBase16Scheme: unknown): maybeBase16Scheme is Base16Scheme {
+    const scheme = maybeBase16Scheme
 
     return (
-      yaml !== null && typeof yaml === 'object' &&
-      'system' in yaml && yaml.system === 'base16' &&
-      'name' in yaml && typeof yaml.name === 'string' &&
-      ('slug' in yaml ? typeof yaml.slug === 'string' : true) &&
-      'author' in yaml && typeof yaml.author === 'string' &&
-      'variant' in yaml && (yaml.variant === 'light' || yaml.variant === 'dark') &&
-      'palette' in yaml && Base16Palette.isValid(yaml.palette)
+      scheme !== null && typeof scheme === 'object' &&
+      'system' in scheme && scheme.system === 'base16' &&
+      'name' in scheme && typeof scheme.name === 'string' &&
+      ('slug' in scheme ? typeof scheme.slug === 'string' : true) &&
+      'author' in scheme && typeof scheme.author === 'string' &&
+      'variant' in scheme && (scheme.variant === 'light' || scheme.variant === 'dark') &&
+      'palette' in scheme && Base16Palette.isValid(scheme.palette)
     )
   }
 }
