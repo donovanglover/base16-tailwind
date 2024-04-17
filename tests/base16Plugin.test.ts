@@ -35,3 +35,22 @@ test('Returns base16 class when included in html', async () => {
     `)
   })
 })
+
+test('Returns color classes with CSS variables', async () => {
+  const config = {
+    content: [
+      {
+        raw: html`<div class="base16-marrakesh text-200 bg-600">Hello World</div>`
+      }
+    ]
+  }
+
+  await runPluginWithConfig(config).then(result => {
+    expect(result.css).toIncludeCss(css`
+      .text-200 {
+        --tw-text-opacity: 1;
+        color: rgb(var(--color-200) / var(--tw-text-opacity));
+      };
+    `)
+  })
+})
