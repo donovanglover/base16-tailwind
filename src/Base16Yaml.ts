@@ -1,12 +1,15 @@
+import slug from 'slug'
+import { Base16Color } from './Base16Color.ts'
 import { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Yaml {
   readonly system = 'base16'
-  readonly name: string
+  readonly name: `base16-${string}`
   readonly slug?: string
   readonly author: string
   readonly variant: 'light' | 'dark'
   readonly palette: Base16Palette
+  readonly base16Colors: Base16Palette
   static readonly #BASE16_YAML_HELP = 'Are you sure your .yaml file follows standards?'
 
   constructor (maybeBase16Yaml: unknown) {
@@ -18,7 +21,12 @@ export class Base16Yaml {
       throw new Error(`Invalid Base16 yaml "${JSON.stringify(maybeBase16Yaml)}" was given. ${Base16Yaml.#BASE16_YAML_HELP}`)
     }
 
-    this.name = maybeBase16Yaml.name
+    this.name = maybeBase16Yaml.slug !== undefined ? `base16-${maybeBase16Yaml.slug}` : `base16-${slug(maybeBase16Yaml.name)}`
+
+    this.base16Colors = new Base16Palette(Object.entries(maybeBase16Yaml.palette).reduce(
+      (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
+    ))
+
     this.slug = maybeBase16Yaml.slug
     this.author = maybeBase16Yaml.author
     this.variant = maybeBase16Yaml.variant
