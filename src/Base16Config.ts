@@ -1,6 +1,6 @@
 import typographyPlugin from '@tailwindcss/typography'
 import type { Config, ContentConfig, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
-import { type Base16Options } from './Base16Options'
+import { type Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Config {
   content: ContentConfig = [
@@ -38,9 +38,7 @@ export class Base16Config implements Config {
       pink: 'rgb(var(--color-pink) / <alpha-value>)'
     }
 
-    if (options === undefined) return
-
-    if (options.withFontOverride) {
+    if (options?.withFontOverride === true) {
       this.theme.extend = {
         fontFamily: {
           sans: ['var(--font-sans)'],
@@ -50,7 +48,7 @@ export class Base16Config implements Config {
       }
     }
 
-    if (options.withTypography) {
+    if (options?.withTypography === true) {
       this.plugins.push(typographyPlugin)
 
       this.theme.extend = {

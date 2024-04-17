@@ -1,4 +1,5 @@
 export interface Base16Options {
-  withTypography: boolean
-  withFontOverride: boolean
+  withTypography?: boolean
+  withFontOverride?: boolean
+  ensurePaletteOrder?: boolean
 }

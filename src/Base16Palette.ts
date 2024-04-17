@@ -1,4 +1,5 @@
 import { Base16Color } from './Base16Color.ts'
+import { type Base16Options } from './Base16Options.ts'
 
 export class Base16Palette {
   base00: Base16Color
@@ -42,7 +43,7 @@ export class Base16Palette {
     this.base0F = maybeBase16Palette.base0F
   }
 
-  static isValid (maybeBase16Palette: unknown): maybeBase16Palette is Base16Palette {
+  static isValid (maybeBase16Palette: unknown, options?: Base16Options): maybeBase16Palette is Base16Palette {
     const palette = maybeBase16Palette
 
     if (palette === null || typeof palette !== 'object') {
@@ -53,6 +54,10 @@ export class Base16Palette {
       if (typeof value !== 'string' || !Base16Color.isValid(value)) {
         return false
       }
+    }
+
+    if (options?.ensurePaletteOrder === true) {
+      return JSON.stringify(Object.keys(palette)) === JSON.stringify(this.#BASE16_PALETTE_KEYS)
     }
 
     return Object.keys(palette).every((value, index) => value === this.#BASE16_PALETTE_KEYS[index])
