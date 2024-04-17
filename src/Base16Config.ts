@@ -1,11 +1,6 @@
 import typographyPlugin from '@tailwindcss/typography'
-import type { Config } from 'tailwindcss'
-import type { ContentConfig, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
-
-export interface Base16ConfigOptions {
-  withTypography: boolean
-  withFontOverride: boolean
-}
+import type { Config, ContentConfig, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
+import { type Base16Options } from './Base16Options'
 
 export class Base16Config implements Config {
   content: ContentConfig = [
@@ -23,7 +18,7 @@ export class Base16Config implements Config {
 
   plugins: PluginsConfig = []
 
-  constructor (options?: Base16ConfigOptions) {
+  constructor (options?: Base16Options) {
     this.theme.colors = {
       100: 'rgb(var(--color-100) / <alpha-value>)',
       200: 'rgb(var(--color-200) / <alpha-value>)',
