@@ -5,8 +5,12 @@ describe('Base16Color', () => {
     expect(new Base16Color('1AD1E5')).toBeDefined()
   })
 
-  it('should pass if value is a valid hexadecimal string with #', () => {
+  it('should pass if value is a valid 6 character hexadecimal string with #', () => {
     expect(new Base16Color('#1AD1E5')).toBeDefined()
+  })
+
+  it('should pass if value is a valid 3 character hexadecimal string with #', () => {
+    expect(new Base16Color('#ACE')).toBeDefined()
   })
 
   it('should error if value is not a string', () => {
@@ -29,7 +33,7 @@ describe('Base16Color', () => {
 
   it('should error if value is a too short hexadecimal string', () => {
     expect(() => {
-      void new Base16Color('A3B')
+      void new Base16Color('A2')
     }).toThrow()
   })
 
@@ -41,6 +45,10 @@ describe('Base16Color', () => {
     it('should convert "#1AD1E5" to "26 209 229"', () => {
       expect(new Base16Color('#1AD1E5').rgb).toBe('26 209 229')
     })
+
+    it('should convert "#ACE" to "170 204 238"', () => {
+      expect(new Base16Color('#ACE').rgb).toBe('170 204 238')
+    })
   })
 
   describe('rgba', () => {
@@ -50,6 +58,10 @@ describe('Base16Color', () => {
 
     it('should convert "#1AD1E5" to "26, 209, 229"', () => {
       expect(new Base16Color('#1AD1E5').rgba).toBe('26, 209, 229')
+    })
+
+    it('should convert "#ACE" to "170, 204, 238"', () => {
+      expect(new Base16Color('#ACE').rgba).toBe('170, 204, 238')
     })
   })
 
@@ -61,6 +73,10 @@ describe('Base16Color', () => {
     it('should convert "#1AD1E5" to "186 80% 50%"', () => {
       expect(new Base16Color('#1AD1E5').hsl).toBe('186 80% 50%')
     })
+
+    it('should convert "#ACE" to "210 67% 80%"', () => {
+      expect(new Base16Color('#ACE').hsl).toBe('210 67% 80%')
+    })
   })
 
   describe('hsla', () => {
@@ -70,6 +86,10 @@ describe('Base16Color', () => {
 
     it('should convert "#1AD1E5" to "186, 80%, 50%"', () => {
       expect(new Base16Color('#1AD1E5').hsla).toBe('186, 80%, 50%')
+    })
+
+    it('should convert "#ACE" to "210, 67%, 80%"', () => {
+      expect(new Base16Color('#ACE').hsla).toBe('210, 67%, 80%')
     })
   })
 })
