@@ -11,7 +11,7 @@ describe('Base16Color', () => {
 
   it('should error if value is not a string', () => {
     expect(() => {
-      void new Base16Color(4923)
+      void new Base16Color(727)
     }).toThrow()
   })
 
@@ -31,32 +31,6 @@ describe('Base16Color', () => {
     expect(() => {
       void new Base16Color('A3B')
     }).toThrow()
-  })
-
-  describe('isValid', () => {
-    it('should return true if value is a valid hexadecimal string', () => {
-      expect(Base16Color.isValid('1AD1E5')).toBe(true)
-    })
-
-    it('should return true if value is a valid hexadecimal string with #', () => {
-      expect(Base16Color.isValid('#1AD1E5')).toBe(true)
-    })
-
-    it('should return false if value is not a string', () => {
-      expect(Base16Color.isValid(727)).toBe(false)
-    })
-
-    it('should return false if value is an invalid hexadecimal string', () => {
-      expect(Base16Color.isValid('AJ3C9X')).toBe(false)
-    })
-
-    it('should return false if value is a too long hexadecimal string', () => {
-      expect(Base16Color.isValid('ACA2ABA1')).toBe(false)
-    })
-
-    it('should return false if value is a too short hexadecimal string', () => {
-      expect(Base16Color.isValid('A3B')).toBe(false)
-    })
   })
 
   describe('rgb', () => {

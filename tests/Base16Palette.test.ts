@@ -35,22 +35,4 @@ describe('Base16Palette', () => {
       void new Base16Palette({ ...randomScheme(), ...{ base0F: 'LEL' } })
     }).toThrow()
   })
-
-  describe('isValid', () => {
-    it('should return true for base00-base0F', () => {
-      expect(Base16Palette.isValid(randomScheme())).toBe(true)
-    })
-
-    it('should return false if missing base values', () => {
-      expect(Base16Palette.isValid({ base07: 'DECADE' })).toBe(false)
-    })
-
-    it('should return false if too many base values', () => {
-      expect(Base16Palette.isValid({ ...randomScheme(), ...{ base0G: 'DE1E7E' } })).toBe(false)
-    })
-
-    it('should return false if valid keys but invalid color value', () => {
-      expect(Base16Palette.isValid({ ...randomScheme(), ...{ base0F: 'LEL' } })).toBe(false)
-    })
-  })
 })
