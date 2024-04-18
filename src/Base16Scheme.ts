@@ -1,5 +1,4 @@
 import slug from 'slug'
-import { Base16Color } from './Base16Color.ts'
 import { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Scheme {
@@ -23,9 +22,7 @@ export class Base16Scheme {
 
     this.name = maybeBase16Scheme.slug !== undefined ? `base16-${maybeBase16Scheme.slug}` : `base16-${slug(maybeBase16Scheme.name)}`
 
-    this.base16Colors = Object.entries(maybeBase16Scheme.palette).reduce(
-      (p, [k, v]) => ({ ...p, [k]: new Base16Color(v) }), {}
-    ) as Base16Palette
+    this.base16Colors = new Base16Palette(maybeBase16Scheme.palette)
 
     this.slug = maybeBase16Scheme.slug
     this.author = maybeBase16Scheme.author
