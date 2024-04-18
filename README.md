@@ -19,6 +19,8 @@ npm add donovanglover/base16-tailwind
 
 ## Usage
 
+See [Base16Options](./src/Base16Options.ts) for the list of available options.
+
 tailwind.config.ts:
 
 ```tsx
