@@ -4,6 +4,7 @@
     "module": "nodenext",
     "strict": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
     "outDir": "./dist"
