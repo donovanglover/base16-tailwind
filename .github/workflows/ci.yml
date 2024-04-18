@@ -55,4 +55,4 @@ jobs:
       - uses: denoland/setup-deno@v1
         with:
           version: latest
-      - run: deno jsr publish --dry-run
+      - run: deno publish --dry-run
