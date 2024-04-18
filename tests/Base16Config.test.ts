@@ -5,24 +5,6 @@ describe('Base16Config', () => {
     expect(new Base16Config()).toHaveProperty('theme.colors')
   })
 
-  describe('withFontOverride', () => {
-    it('should set fontFamily.mono', () => {
-      expect(new Base16Config({ withFontOverride: true })).toHaveProperty('theme.extend.fontFamily.mono', ['var(--font-mono)'])
-    })
-
-    it('should set fontFamily.sans', () => {
-      expect(new Base16Config({ withFontOverride: true })).toHaveProperty('theme.extend.fontFamily.sans', ['var(--font-sans)'])
-    })
-
-    it('should set fontFamily.serif', () => {
-      expect(new Base16Config({ withFontOverride: true })).toHaveProperty('theme.extend.fontFamily.serif', ['var(--font-serif)'])
-    })
-
-    it('should not set fontFamily when false', () => {
-      expect(new Base16Config({ withFontOverride: false })).not.toHaveProperty('theme.extend.fontFamily')
-    })
-  })
-
   describe('withTypography', () => {
     it('should extend typography', () => {
       expect(new Base16Config({ withTypography: true })).toHaveProperty('theme.extend.typography')

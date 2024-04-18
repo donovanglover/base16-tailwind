@@ -32,16 +32,6 @@ export class Base16Config implements Partial<Config> {
       pink: 'rgb(var(--color-pink) / <alpha-value>)'
     }
 
-    if (options?.withFontOverride === true) {
-      this.theme.extend = {
-        fontFamily: {
-          sans: ['var(--font-sans)'],
-          serif: ['var(--font-serif)'],
-          mono: ['var(--font-mono)']
-        }
-      }
-    }
-
     if (options?.withTypography === true) {
       this.plugins.push(typographyPlugin)
 

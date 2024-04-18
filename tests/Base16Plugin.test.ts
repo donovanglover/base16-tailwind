@@ -12,7 +12,7 @@ test('Returns base16 class when included in html', async () => {
     ]
   }
 
-  await runPluginWithConfig(config, { withTypography: true, withFontOverride: true }).then(result => {
+  await runPluginWithConfig(config, { withTypography: true }).then(result => {
     expect(result.css).toIncludeCss(css`
       .base16-monokai {
         --color-800: 39 40 34;
