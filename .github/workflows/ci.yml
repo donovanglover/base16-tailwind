@@ -48,12 +48,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
   publish:
-    name: npx jsr publish --dry-run
+    name: deno publish --dry-run
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: denoland/setup-deno@v1
         with:
           version: latest
-      - run: npm ci
-      - run: npx jsr publish --dry-run
+      - run: deno jsr publish --dry-run
