@@ -55,4 +55,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           version: latest
+      - run: npm ci
       - run: npx jsr publish --dry-run
