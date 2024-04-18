@@ -78,4 +78,8 @@ export default function ChangeThemeButton (): React.ReactElement {
 
 ## Contributing
 
-base16-tailwind has 100% test coverage and should be bug free. That said, contributions are welcome. Run `npm ci` to do a clean install and use the `lint` and `test` scripts to check your work.
+Run `npm ci` to do a clean install and use the `lint` and `test` scripts to check your work. Ideas:
+
+- [ ] Support rgba / hsl / hsla
+- [ ] Support base24
+- [ ] Add option to extend instead of override colors
