@@ -1,10 +1,6 @@
 import { Base16Config } from '../src/Base16Config.ts'
 
 describe('Base16Config', () => {
-  it('should set content files to search for tailwind classes', () => {
-    expect(new Base16Config()).toHaveProperty('content')
-  })
-
   it('should override the default tailwind colors', () => {
     expect(new Base16Config()).toHaveProperty('theme.colors')
   })

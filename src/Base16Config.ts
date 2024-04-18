@@ -1,14 +1,8 @@
 import typographyPlugin from '@tailwindcss/typography'
-import type { Config, ContentConfig, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
+import type { Config, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
 import { type Base16Options } from './Base16Options.ts'
 
-export class Base16Config implements Config {
-  content: ContentConfig = [
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}'
-  ]
-
+export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {
     colors: {
       transparent: 'transparent',

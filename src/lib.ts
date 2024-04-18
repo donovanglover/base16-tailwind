@@ -8,7 +8,7 @@ function base16Handler (options?: Base16Options): PluginCreator {
   return new Base16Plugin(options).creator
 }
 
-function base16Config (options?: Base16Options): Config {
+function base16Config (options?: Base16Options): Partial<Config> {
   return new Base16Config(options)
 }
 
