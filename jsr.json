@@ -1,0 +1,13 @@
+{
+  "name": "@donovanglover/base16-tailwind",
+  "version": "0.1.0",
+  "exports": "./src/lib.ts",
+
+  "publish": {
+    "include": [
+      "LICENSE",
+      "README.md",
+      "src/**/*.ts"
+    ]
+  }
+}
