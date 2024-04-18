@@ -2,45 +2,52 @@ import slug from 'slug'
 import { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Scheme {
-  readonly system? = 'base16'
+  readonly system: 'base16'
   readonly name: string
-  readonly slug?: string
+  readonly slug: string
   readonly author: string
   readonly variant: 'light' | 'dark'
   readonly palette: Base16Palette
-  readonly base16Colors: Base16Palette
-  static readonly #BASE16_SCHEME_HELP = 'Are you sure your imported file or JSON object follows standards?'
 
   constructor (maybeBase16Scheme: unknown) {
     if (maybeBase16Scheme === null || typeof maybeBase16Scheme !== 'object') {
-      throw new Error(`A non-object value was given as a Base16 scheme. ${Base16Scheme.#BASE16_SCHEME_HELP}`)
+      throw new Error('A non-object value was given as a Base16 scheme.')
     }
 
-    if (!Base16Scheme.isValid(maybeBase16Scheme)) {
-      throw new Error(`Invalid Base16 scheme "${JSON.stringify(maybeBase16Scheme)}" was given. ${Base16Scheme.#BASE16_SCHEME_HELP}`)
+    if ('system' in maybeBase16Scheme && maybeBase16Scheme.system === 'base16') {
+      this.system = 'base16'
+    } else {
+      throw new Error('The key "system" must be set to "base16" for Base16 schemes.')
     }
 
-    this.name = maybeBase16Scheme.slug !== undefined ? `base16-${maybeBase16Scheme.slug}` : `base16-${slug(maybeBase16Scheme.name)}`
+    if ('name' in maybeBase16Scheme && typeof maybeBase16Scheme.name === 'string') {
+      this.name = maybeBase16Scheme.name
+    } else {
+      throw new Error('No name was given for the Base16 scheme.')
+    }
 
-    this.base16Colors = new Base16Palette(maybeBase16Scheme.palette)
+    if ('slug' in maybeBase16Scheme && typeof maybeBase16Scheme.slug === 'string') {
+      this.slug = `base16-${maybeBase16Scheme.slug}`
+    } else {
+      this.slug = `base16-${slug(this.name)}`
+    }
 
-    this.slug = maybeBase16Scheme.slug
-    this.author = maybeBase16Scheme.author
-    this.variant = maybeBase16Scheme.variant
-    this.palette = maybeBase16Scheme.palette
-  }
+    if ('author' in maybeBase16Scheme && typeof maybeBase16Scheme.author === 'string') {
+      this.author = maybeBase16Scheme.author
+    } else {
+      throw new Error('No author was given for Base16 scheme.')
+    }
 
-  static isValid (maybeBase16Scheme: unknown): maybeBase16Scheme is Base16Scheme {
-    const scheme = maybeBase16Scheme
+    if ('variant' in maybeBase16Scheme && (maybeBase16Scheme.variant === 'light' || maybeBase16Scheme.variant === 'dark')) {
+      this.variant = maybeBase16Scheme.variant
+    } else {
+      throw new Error('No variant was given for Base16 scheme.')
+    }
 
-    return (
-      scheme !== null && typeof scheme === 'object' &&
-      ('system' in scheme ? scheme.system === 'base16' : true) &&
-      'name' in scheme && typeof scheme.name === 'string' &&
-      ('slug' in scheme ? typeof scheme.slug === 'string' : true) &&
-      'author' in scheme && typeof scheme.author === 'string' &&
-      'variant' in scheme && (scheme.variant === 'light' || scheme.variant === 'dark') &&
-      'palette' in scheme && Base16Palette.isValid(scheme.palette)
-    )
+    if ('palette' in maybeBase16Scheme) {
+      this.palette = new Base16Palette(maybeBase16Scheme.palette)
+    } else {
+      throw new Error('No palette was given for Base16 scheme.')
+    }
   }
 }
