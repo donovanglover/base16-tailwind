@@ -24,6 +24,6 @@ describe('Base16Path', () => {
   it('should error if yaml slug differs from file name', () => {
     expect(() => {
       void new Base16Path('./tests/data')
-    }).toThrow()
+    }).toThrow('File "pink.yaml" is invalid. The slug from the YAML data differs from the slug of the file name.')
   })
 })
