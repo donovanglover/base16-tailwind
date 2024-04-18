@@ -36,6 +36,17 @@ describe('Base16Scheme', () => {
     }).toThrow()
   })
 
+  it('should error if missing author', () => {
+    expect(() => {
+      void new Base16Scheme({
+        system: 'base16',
+        name: 'Cool Scheme',
+        variant: 'light',
+        palette: randomScheme()
+      })
+    }).toThrow()
+  })
+
   it('should error if missing palette', () => {
     expect(() => {
       void new Base16Scheme({
