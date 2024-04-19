@@ -1,8 +1,9 @@
 import slug from 'slug'
 import { Base16Palette } from './Base16Palette.ts'
+import type { Base16System } from './Base16System.ts'
 
 export class Base16Scheme {
-  readonly system: 'base16'
+  readonly system: Base16System
   readonly name: string
   readonly slug: string
   readonly author: string
@@ -14,10 +15,14 @@ export class Base16Scheme {
       throw new Error('A non-object value was given as a Base16 scheme.')
     }
 
-    if ('system' in maybeBase16Scheme && maybeBase16Scheme.system === 'base16') {
-      this.system = 'base16'
+    if (!('system' in maybeBase16Scheme)) {
+      throw new Error('No system was given for the Base16 scheme.')
+    }
+
+    if (maybeBase16Scheme.system === 'base16' || maybeBase16Scheme.system === 'base24') {
+      this.system = maybeBase16Scheme.system
     } else {
-      throw new Error('The key "system" must be set to "base16" for Base16 schemes.')
+      throw new Error('The key "system" must be base16 or base24.')
     }
 
     if ('name' in maybeBase16Scheme && typeof maybeBase16Scheme.name === 'string') {
@@ -27,9 +32,9 @@ export class Base16Scheme {
     }
 
     if ('slug' in maybeBase16Scheme && typeof maybeBase16Scheme.slug === 'string') {
-      this.slug = `base16-${maybeBase16Scheme.slug}`
+      this.slug = `${this.system}-${maybeBase16Scheme.slug}`
     } else {
-      this.slug = `base16-${slug(this.name)}`
+      this.slug = `${this.system}-${slug(this.name)}`
     }
 
     if ('author' in maybeBase16Scheme && typeof maybeBase16Scheme.author === 'string') {

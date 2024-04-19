@@ -61,6 +61,47 @@ test('Returns base16 class when included in html', async () => {
   })
 })
 
+test('Returns base24 class when included in html', async () => {
+  const config = {
+    content: [
+      {
+        raw: html`<div class="base24-dracula">Hello World</div>`
+      }
+    ]
+  }
+
+  await runPluginWithConfig(config).then(result => {
+    expect(result.css).toIncludeCss(css`
+      .base24-dracula {
+        --color-800: 33 34 44;
+        --color-700: 40 42 54;
+        --color-600: 58 60 78;
+        --color-500: 77 79 104;
+        --color-400: 98 100 131;
+        --color-300: 233 233 244;
+        --color-200: 248 248 242;
+        --color-100: 255 255 255;
+        --color-red: 255 85 85;
+        --color-orange: 241 250 140;
+        --color-yellow: 235 255 135;
+        --color-green: 80 250 123;
+        --color-cyan: 139 233 253;
+        --color-blue: 189 147 249;
+        --color-purple: 255 121 198;
+        --color-pink: 0 247 105;
+        --color-800-darker: 29 29 38;
+        --color-800-darkest: 27 27 35;
+        --color-red-bright: 255 110 110;
+        --color-yellow-bright: 255 255 165;
+        --color-green-bright: 105 255 148;
+        --color-cyan-bright: 164 255 255;
+        --color-blue-bright: 214 172 255;
+        --color-purple-bright: 255 146 223;
+      }
+    `)
+  })
+})
+
 test('Returns color classes with CSS variables', async () => {
   const config = {
     content: [
@@ -75,6 +116,25 @@ test('Returns color classes with CSS variables', async () => {
       .text-200 {
         --tw-text-opacity: 1;
         color: rgb(var(--color-200) / var(--tw-text-opacity));
+      };
+    `)
+  })
+})
+
+test('Returns color classes for base24 -bright variants when system is base24', async () => {
+  const config = {
+    content: [
+      {
+        raw: html`<div class="base24-sparky text-blue-bright">Hello World</div>`
+      }
+    ]
+  }
+
+  await runPluginWithConfig(config, { system: 'base24' }).then(result => {
+    expect(result.css).toIncludeCss(css`
+      .text-blue-bright {
+        --tw-text-opacity: 1;
+        color: rgb(var(--color-blue-bright) / var(--tw-text-opacity));
       };
     `)
   })

@@ -10,7 +10,7 @@ export class Base16Config implements Partial<Config> {
   colorSpace: Base16ColorSpace
 
   constructor (options?: Base16Options) {
-    const css = new Base16Css('base16')
+    const css = new Base16Css(options?.system ?? 'base16')
 
     this.colorSpace = options?.colorSpace ?? 'rgb'
 

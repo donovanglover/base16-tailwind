@@ -69,6 +69,18 @@ describe('Base16Scheme', () => {
     }).toThrow()
   })
 
+  it('should error if invalid system', () => {
+    expect(() => {
+      void new Base16Scheme({
+        system: 'base727',
+        name: 'Cool Scheme',
+        author: 'John Doe',
+        variant: 'light',
+        palette: randomPalette()
+      })
+    }).toThrow()
+  })
+
   it('should pass if missing slug', () => {
     expect(new Base16Scheme({
       system: 'base16',
@@ -80,7 +92,7 @@ describe('Base16Scheme', () => {
   })
 
   describe('slug', () => {
-    it('should be in the form base16-$name', () => {
+    it('should be in the form base16-$name if system is base16', () => {
       expect(new Base16Scheme({
         system: 'base16',
         name: 'Cool Scheme',
@@ -88,6 +100,16 @@ describe('Base16Scheme', () => {
         variant: 'light',
         palette: randomPalette()
       })).toHaveProperty('slug', 'base16-cool-scheme')
+    })
+
+    it('should be in the form base24-$name if system is base24', () => {
+      expect(new Base16Scheme({
+        system: 'base24',
+        name: 'Cool Scheme',
+        author: 'John Doe',
+        variant: 'light',
+        palette: randomPalette()
+      })).toHaveProperty('slug', 'base24-cool-scheme')
     })
 
     it('should use the existing slug if one is specified', () => {

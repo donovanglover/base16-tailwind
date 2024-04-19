@@ -14,8 +14,8 @@ export class Base16Palette {
       this.colors.push(new Base16Color(value))
     }
 
-    if (this.colors.length !== 16) {
-      throw new Error(`Palette ${JSON.stringify(this.colors)} does not have exactly 16 colors.`)
+    if (this.colors.length !== 16 && this.colors.length !== 24) {
+      throw new Error(`Palette ${JSON.stringify(this.colors)} does not have exactly 16 or 24 colors.`)
     }
   }
 }

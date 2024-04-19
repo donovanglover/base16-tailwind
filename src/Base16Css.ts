@@ -10,12 +10,22 @@ export class Base16Css {
       throw new Error('Base16 css must be derived from system.')
     }
 
-    if (maybeSystem !== 'base16') {
-      throw new Error('Only base16 is supported for now.')
+    if (maybeSystem !== 'base16' && maybeSystem !== 'base24') {
+      throw new Error('Given system is not base16 or base24.')
     }
 
     for (let i = 0; i < 16; i++) {
       this.variables.push(i < 8 ? `${8 - i}00` : Base16Css.#colors[i - 8])
+    }
+
+    if (maybeSystem === 'base24') {
+      this.variables.push('800-darker')
+      this.variables.push('800-darkest')
+      this.variables.push(`${Base16Css.#colors[0]}-bright`)
+
+      for (let i = 19; i < 24; i++) {
+        this.variables.push(`${Base16Css.#colors[i - 17]}-bright`)
+      }
     }
   }
 
