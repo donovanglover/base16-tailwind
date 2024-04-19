@@ -4,21 +4,13 @@ import { Base16Css } from './Base16Css.ts'
 import { type Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Partial<Config> {
-  theme: Partial<CustomThemeConfig> = {
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor'
-    }
-  }
-
+  theme: Partial<CustomThemeConfig> = {}
   plugins: PluginsConfig = []
 
   constructor (options?: Base16Options) {
     const css = new Base16Css('base16')
 
-    css.variables.forEach(key => {
-      (this.theme.colors as Record<string, string>)[key] = `rgb(var(--color-${key}) / <alpha-value>)`
-    })
+    options?.extendOnly === true ? this.extendColors(css) : this.overrideColors(css)
 
     if (options?.withTypography === true) {
       this.plugins.push(typographyPlugin)
@@ -48,5 +40,30 @@ export class Base16Config implements Partial<Config> {
         })
       }
     }
+  }
+
+  extendColors (css: Base16Css): void {
+    this.theme.extend = {}
+    this.theme.extend.colors = {}
+
+    css.variables.forEach(key => {
+      ((this.theme.extend as CustomThemeConfig).colors as Record<string, string>)[key] =
+        Base16Config.colorSpaceWithKey(key)
+    })
+  }
+
+  overrideColors (css: Base16Css): void {
+    this.theme.colors = {
+      transparent: 'transparent',
+      current: 'currentColor'
+    }
+
+    css.variables.forEach(key => {
+      (this.theme.colors as Record<string, string>)[key] = `rgb(var(--color-${key}) / <alpha-value>)`
+    })
+  }
+
+  static colorSpaceWithKey (key: string): string {
+    return `rgb(var(--color-${key}) / <alpha-value>)`
   }
 }
