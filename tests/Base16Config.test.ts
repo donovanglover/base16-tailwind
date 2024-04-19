@@ -13,5 +13,9 @@ describe('Base16Config', () => {
     it('should not extend typography when false', () => {
       expect(new Base16Config({ withTypography: false })).not.toHaveProperty('theme.extend.typography')
     })
+
+    it('should be false by default', () => {
+      expect(new Base16Config()).not.toHaveProperty('theme.extend.typography')
+    })
   })
 })
