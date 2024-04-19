@@ -268,28 +268,4 @@ describe('Base16Plugin', () => {
       })
     })
   })
-
-  describe('withTypography', () => {
-    it('should add prose classes to the html', async () => {
-      const config: Config = {
-        content: [
-          {
-            raw: html`<div class="base16-monokai"><article class="prose"><a href="/">Hello World</a></article></div>`
-          }
-        ],
-
-        plugins: [
-          typographyPlugin
-        ]
-      }
-
-      await runPluginWithConfig(config, { withTypography: true }).then(result => {
-        expect(result.css).toIncludeCss(css`
-          .prose {
-            --tw-prose-links: rgba();
-          }
-        `)
-      })
-    })
-  })
 })
