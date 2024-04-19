@@ -1,5 +1,5 @@
 import { Base16Scheme } from '../src/Base16Scheme.ts'
-import { randomScheme } from './helpers/randomScheme.ts'
+import { randomPalette } from './helpers/randomPalette.ts'
 
 describe('Base16Scheme', () => {
   it('should error if null', () => {
@@ -20,7 +20,7 @@ describe('Base16Scheme', () => {
         system: 'base16',
         author: 'John Doe',
         variant: 'light',
-        palette: randomScheme()
+        palette: randomPalette()
       })
     }).toThrow()
   })
@@ -31,7 +31,7 @@ describe('Base16Scheme', () => {
         system: 'base16',
         name: 'Cool Scheme',
         author: 'John Doe',
-        palette: randomScheme()
+        palette: randomPalette()
       })
     }).toThrow()
   })
@@ -42,7 +42,7 @@ describe('Base16Scheme', () => {
         system: 'base16',
         name: 'Cool Scheme',
         variant: 'light',
-        palette: randomScheme()
+        palette: randomPalette()
       })
     }).toThrow()
   })
@@ -64,7 +64,7 @@ describe('Base16Scheme', () => {
         name: 'Cool Scheme',
         author: 'John Doe',
         variant: 'light',
-        palette: randomScheme()
+        palette: randomPalette()
       })
     }).toThrow()
   })
@@ -75,7 +75,7 @@ describe('Base16Scheme', () => {
       name: 'Cool Scheme',
       author: 'John Doe',
       variant: 'light',
-      palette: randomScheme()
+      palette: randomPalette()
     })).toBeDefined()
   })
 
@@ -86,7 +86,7 @@ describe('Base16Scheme', () => {
         name: 'Cool Scheme',
         author: 'John Doe',
         variant: 'light',
-        palette: randomScheme()
+        palette: randomPalette()
       })).toHaveProperty('slug', 'base16-cool-scheme')
     })
 
@@ -97,7 +97,7 @@ describe('Base16Scheme', () => {
         slug: 'oh',
         author: 'John Doe',
         variant: 'light',
-        palette: randomScheme()
+        palette: randomPalette()
       })).toHaveProperty('slug', 'base16-oh')
     })
   })

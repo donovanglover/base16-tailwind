@@ -1,9 +1,9 @@
 import { Base16Palette } from '../src/Base16Palette.ts'
-import { randomScheme } from './helpers/randomScheme.ts'
+import { randomPalette } from './helpers/randomPalette.ts'
 
 describe('Base16Palette', () => {
   it('should pass for base00-base0F', () => {
-    expect(new Base16Palette(randomScheme())).toBeDefined()
+    expect(new Base16Palette(randomPalette())).toBeDefined()
   })
 
   it('should error if null', () => {
@@ -26,13 +26,13 @@ describe('Base16Palette', () => {
 
   it('should error if too many base values', () => {
     expect(() => {
-      void new Base16Palette({ ...randomScheme(), ...{ base0G: 'DE1E7E' } })
+      void new Base16Palette({ ...randomPalette(), ...{ base0G: 'DE1E7E' } })
     }).toThrow()
   })
 
   it('should error if valid keys but invalid color value', () => {
     expect(() => {
-      void new Base16Palette({ ...randomScheme(), ...{ base0F: 'LEL' } })
+      void new Base16Palette({ ...randomPalette(), ...{ base0F: 'LEL' } })
     }).toThrow()
   })
 })
