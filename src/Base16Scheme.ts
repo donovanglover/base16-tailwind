@@ -1,4 +1,5 @@
 import slug from 'slug'
+import type { Base16Options } from './Base16Options.ts'
 import { Base16Palette } from './Base16Palette.ts'
 import type { Base16System } from './Base16System.ts'
 
@@ -10,7 +11,7 @@ export class Base16Scheme {
   readonly variant: 'light' | 'dark'
   readonly palette: Base16Palette
 
-  constructor (maybeBase16Scheme: unknown) {
+  constructor (maybeBase16Scheme: unknown, options?: Base16Options) {
     if (maybeBase16Scheme === null || typeof maybeBase16Scheme !== 'object') {
       throw new Error('A non-object value was given as a Base16 scheme.')
     }
@@ -50,7 +51,7 @@ export class Base16Scheme {
     }
 
     if ('palette' in maybeBase16Scheme) {
-      this.palette = new Base16Palette(maybeBase16Scheme.palette)
+      this.palette = new Base16Palette(maybeBase16Scheme.palette, options)
     } else {
       throw new Error('No palette was given for Base16 scheme.')
     }

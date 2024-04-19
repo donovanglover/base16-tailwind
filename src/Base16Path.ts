@@ -3,6 +3,7 @@ import { join } from 'node:path'
 import { cwd } from 'node:process'
 import { globSync } from 'glob'
 import YAML from 'yaml'
+import type { Base16Options } from './Base16Options.ts'
 import { Base16Scheme } from './Base16Scheme.ts'
 
 export class Base16Path {
@@ -10,7 +11,7 @@ export class Base16Path {
   readonly schemes: Base16Scheme[] = []
   readonly path: string
 
-  constructor (maybePath?: unknown) {
+  constructor (maybePath?: unknown, options?: Base16Options) {
     this.path = typeof maybePath === 'string' ? join(cwd(), maybePath) : Base16Path.DEFAULT_PATH
 
     if (!existsSync(this.path)) {
@@ -22,7 +23,7 @@ export class Base16Path {
     for (const file of files) {
       const fileContents = readFileSync(file, 'utf-8')
       const yaml = YAML.parse(fileContents)
-      const scheme = new Base16Scheme(yaml)
+      const scheme = new Base16Scheme(yaml, options)
       const fileNameSlug = `${scheme.system}-${file.split('/').reverse()[0].replace('.yaml', '')}`
 
       if (scheme.slug !== fileNameSlug) {

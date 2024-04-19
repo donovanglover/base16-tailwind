@@ -1,11 +1,12 @@
 import type { Base16ColorSpace } from './Base16ColorSpace.ts'
+import type { Base16Options } from './Base16Options.ts'
 import type { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Css {
   static readonly #colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink']
   readonly variables: string[] = []
 
-  constructor (maybeSystem: unknown) {
+  constructor (maybeSystem: unknown, options?: Base16Options) {
     if (typeof maybeSystem !== 'string') {
       throw new Error('Base16 css must be derived from system.')
     }
@@ -18,7 +19,7 @@ export class Base16Css {
       this.variables.push(i < 8 ? `${8 - i}00` : Base16Css.#colors[i - 8])
     }
 
-    if (maybeSystem === 'base24') {
+    if (options?.system === 'base24') {
       this.variables.push('800-darker')
       this.variables.push('800-darkest')
       this.variables.push(`${Base16Css.#colors[0]}-bright`)

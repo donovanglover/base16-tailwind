@@ -8,11 +8,11 @@ export class Base16Plugin {
   readonly #base16Path: Base16Path
 
   constructor (options?: Base16Options) {
-    this.#base16Path = new Base16Path(options?.customPath)
+    this.#base16Path = new Base16Path(options?.customPath, options)
 
     this.creator = ({ addUtilities }) => {
       for (const scheme of this.#base16Path.schemes) {
-        const css = new Base16Css(scheme.system)
+        const css = new Base16Css(scheme.system, options)
 
         addUtilities({
           ['.' + scheme.slug]: css.fromPalette(scheme.palette, options?.colorSpace)
