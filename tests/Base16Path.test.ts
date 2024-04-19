@@ -26,4 +26,10 @@ describe('Base16Path', () => {
       void new Base16Path('./tests/data/invalid')
     }).toThrow()
   })
+
+  it('should error if duplicate slug in path', () => {
+    expect(() => {
+      void new Base16Path('./tests/data/duplicate')
+    }).toThrow()
+  })
 })

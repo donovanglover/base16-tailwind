@@ -23,10 +23,14 @@ export class Base16Path {
       const fileContents = readFileSync(file, 'utf-8')
       const yaml = YAML.parse(fileContents)
       const scheme = new Base16Scheme(yaml)
-      const fileNameSlug = file.split('/').reverse()[0].replace('.yaml', '')
+      const fileNameSlug = `${scheme.system}-${file.split('/').reverse()[0].replace('.yaml', '')}`
 
-      if (scheme.slug !== `${scheme.system}-${fileNameSlug}`) {
+      if (scheme.slug !== fileNameSlug) {
         throw new Error(`File "${file}" is invalid. The slug from the YAML data differs from the slug of the file name.`)
+      }
+
+      if (this.schemes.some(base16Scheme => base16Scheme.slug === fileNameSlug)) {
+        throw new Error(`Duplicate slug ${fileNameSlug} from file "${file}" already exists in Base16 schemes array.`)
       }
 
       this.schemes.push(scheme)
