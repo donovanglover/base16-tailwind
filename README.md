@@ -80,8 +80,4 @@ export default function ChangeThemeButton (): React.ReactElement {
 
 ## Contributing
 
-Run `npm ci` to do a clean install and use the `lint` and `test` scripts to check your work. Ideas:
-
-- [ ] Support rgba / hsl / hsla
-- [ ] Support base24
-- [ ] Add option to extend instead of override colors
+Run `npm ci` to do a clean install and use the `lint` and `test` scripts to check your work.
