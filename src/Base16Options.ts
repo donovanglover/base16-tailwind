@@ -1,3 +1,5 @@
+import type { Base16ColorSpace } from './Base16ColorSpace.ts'
+
 export interface Base16Options {
   /** Whether or not to style prose classes as well.
    *
@@ -23,4 +25,10 @@ export interface Base16Options {
    * @default '/path/to/base16-tailwind/schemes/base16'
    **/
   customPath?: string
+
+  /** Which color space to use for the CSS variables.
+  *
+  * @default 'rgb'
+  **/
+  colorSpace?: Base16ColorSpace
 }

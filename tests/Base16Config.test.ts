@@ -52,4 +52,26 @@ describe('Base16Config', () => {
       expect(new Base16Config()).not.toHaveProperty('theme.extend.colors')
     })
   })
+
+  describe('colorSpace', () => {
+    it('should use the rgb color space by default', () => {
+      expect(new Base16Config({ colorSpace: 'rgb' })).toHaveProperty('theme.colors.red', 'rgb(var(--color-red) / <alpha-value>)')
+    })
+
+    it('should use the rgb color space if specified', () => {
+      expect(new Base16Config({ colorSpace: 'rgb' })).toHaveProperty('theme.colors.red', 'rgb(var(--color-red) / <alpha-value>)')
+    })
+
+    it('should use the rgba color space if specified', () => {
+      expect(new Base16Config({ colorSpace: 'rgba' })).toHaveProperty('theme.colors.red', 'rgba(var(--color-red) / <alpha-value>)')
+    })
+
+    it('should use the hsl color space if specified', () => {
+      expect(new Base16Config({ colorSpace: 'hsl' })).toHaveProperty('theme.colors.red', 'hsl(var(--color-red) / <alpha-value>)')
+    })
+
+    it('should use the hsla color space if specified', () => {
+      expect(new Base16Config({ colorSpace: 'hsla' })).toHaveProperty('theme.colors.red', 'hsla(var(--color-red) / <alpha-value>)')
+    })
+  })
 })

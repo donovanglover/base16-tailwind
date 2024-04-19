@@ -15,7 +15,7 @@ export class Base16Plugin {
         const css = new Base16Css(scheme.system)
 
         addUtilities({
-          ['.' + scheme.slug]: css.fromPalette(scheme.palette)
+          ['.' + scheme.slug]: css.fromPalette(scheme.palette, options?.colorSpace)
         })
       }
     }

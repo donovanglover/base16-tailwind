@@ -1,3 +1,4 @@
+import type { Base16ColorSpace } from './Base16ColorSpace.ts'
 import type { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Css {
@@ -18,11 +19,11 @@ export class Base16Css {
     }
   }
 
-  fromPalette (palette: Base16Palette): Record<string, string> {
+  fromPalette (palette: Base16Palette, colorSpace?: Base16ColorSpace): Record<string, string> {
     const cssVariables: Record<string, string> = {}
 
     this.variables.forEach((key, i) => {
-      cssVariables[`--color-${key}`] = palette.colors[i].rgb
+      cssVariables[`--color-${key}`] = palette.colors[i][colorSpace ?? 'rgb']
     })
 
     return cssVariables

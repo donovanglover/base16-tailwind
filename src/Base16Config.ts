@@ -1,14 +1,18 @@
 import typographyPlugin from '@tailwindcss/typography'
 import type { Config, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
+import type { Base16ColorSpace } from './Base16ColorSpace.ts'
 import { Base16Css } from './Base16Css.ts'
 import type { Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}
   plugins: PluginsConfig = []
+  colorSpace: Base16ColorSpace
 
   constructor (options?: Base16Options) {
     const css = new Base16Css('base16')
+
+    this.colorSpace = options?.colorSpace ?? 'rgb'
 
     options?.extendOnly === true ? this.extendColors(css) : this.overrideColors(css)
 
@@ -48,7 +52,7 @@ export class Base16Config implements Partial<Config> {
 
     css.variables.forEach(key => {
       ((this.theme.extend as CustomThemeConfig).colors as Record<string, string>)[key] =
-        Base16Config.colorSpaceWithKey(key)
+        this.colorSpaceWithKey(key)
     })
   }
 
@@ -59,11 +63,11 @@ export class Base16Config implements Partial<Config> {
     }
 
     css.variables.forEach(key => {
-      (this.theme.colors as Record<string, string>)[key] = `rgb(var(--color-${key}) / <alpha-value>)`
+      (this.theme.colors as Record<string, string>)[key] = this.colorSpaceWithKey(key)
     })
   }
 
-  static colorSpaceWithKey (key: string): string {
-    return `rgb(var(--color-${key}) / <alpha-value>)`
+  colorSpaceWithKey (key: string): string {
+    return `${this.colorSpace}(var(--color-${key}) / <alpha-value>)`
   }
 }
