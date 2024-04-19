@@ -1,6 +1,6 @@
-import { type PluginCreator } from 'tailwindcss/types/config'
+import type { PluginCreator } from 'tailwindcss/types/config'
 import { Base16Css } from './Base16Css.ts'
-import { type Base16Options } from './Base16Options.ts'
+import type { Base16Options } from './Base16Options.ts'
 import { Base16Path } from './Base16Path.ts'
 
 export class Base16Plugin {

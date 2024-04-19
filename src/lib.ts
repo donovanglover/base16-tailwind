@@ -1,7 +1,7 @@
 import plugin from 'tailwindcss/plugin'
 import type { Config, PluginCreator } from 'tailwindcss/types/config'
 import { Base16Config } from './Base16Config.ts'
-import { type Base16Options } from './Base16Options.ts'
+import type { Base16Options } from './Base16Options.ts'
 import { Base16Plugin } from './Base16Plugin.ts'
 
 function base16Handler (options?: Base16Options): PluginCreator {

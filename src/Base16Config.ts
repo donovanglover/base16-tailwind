@@ -1,7 +1,7 @@
 import typographyPlugin from '@tailwindcss/typography'
 import type { Config, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
 import { Base16Css } from './Base16Css.ts'
-import { type Base16Options } from './Base16Options.ts'
+import type { Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}

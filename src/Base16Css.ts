@@ -1,4 +1,4 @@
-import { type Base16Palette } from './Base16Palette.ts'
+import type { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Css {
   static readonly #colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink']
