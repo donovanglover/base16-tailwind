@@ -322,6 +322,48 @@ describe('Base16Plugin', () => {
     })
   })
 
+  describe('customPath', () => {
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base16-blue text-green">Hello World</div>`
+        }
+      ]
+    }
+
+    it('should work with custom scheme directories', async () => {
+      await runPluginWithConfig(config, { customPath: './tests/data/valid' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .base16-blue {
+            --color-800: 0 0 0;
+            --color-700: 17 17 17;
+            --color-600: 34 34 34;
+            --color-500: 51 51 51;
+            --color-400: 68 68 68;
+            --color-300: 85 85 85;
+            --color-200: 102 102 102;
+            --color-100: 119 119 119;
+            --color-red: 136 136 136;
+            --color-orange: 153 153 153;
+            --color-yellow: 170 170 170;
+            --color-green: 187 187 187;
+            --color-cyan: 204 204 204;
+            --color-blue: 221 221 221;
+            --color-purple: 238 238 238;
+            --color-pink: 255 255 255;
+          }
+        `)
+
+        expect(result.css).toIncludeCss(css`
+          .text-green {
+            --tw-text-opacity: 1;
+            color: rgb(var(--color-green) / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+  })
+
   describe('colorSpace', () => {
     const config: Config = {
       content: [
