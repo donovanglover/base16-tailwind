@@ -269,31 +269,37 @@ describe('Base16Plugin', () => {
   })
 
   describe('withTypography', () => {
-    it('should add prose variables to the html', async () => {
-      const config: Config = {
-        content: [
-          {
-            raw: html`<div class="base16-monokai"><article class="prose"><a href="/">Hello World</a></article></div>`
-          }
-        ]
-      }
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base16-monokai"><article class="prose"><a href="/">Hello World</a></article></div>`
+        }
+      ]
+    }
 
+    it('should add prose variables to the html', async () => {
       await runPluginWithConfig(config, { withTypography: true }).then(result => {
         expect(result.css).toMatch('--tw-prose-links: rgb(var(--color-blue) / <alpha-value>);')
+      })
+    })
+
+    it('should not add prose variables when false', async () => {
+      await runPluginWithConfig(config).then(result => {
+        expect(result.css).not.toMatch('--tw-prose-links: rgb(var(--color-blue) / <alpha-value>);')
       })
     })
   })
 
   describe('extendOnly', () => {
-    it('should not override default colors', async () => {
-      const config: Config = {
-        content: [
-          {
-            raw: html`<div class="base16-monokai"><p className="text-lime-500">Hello World</p></div>`
-          }
-        ]
-      }
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base16-monokai"><p className="text-lime-500">Hello World</p></div>`
+        }
+      ]
+    }
 
+    it('should not override default colors', async () => {
       await runPluginWithConfig(config, { extendOnly: true }).then(result => {
         expect(result.css).toIncludeCss(css`
           .text-lime-500 {
@@ -305,14 +311,6 @@ describe('Base16Plugin', () => {
     })
 
     it('should override default colors when false', async () => {
-      const config: Config = {
-        content: [
-          {
-            raw: html`<div class="base16-monokai"><p className="text-lime-500">Hello World</p></div>`
-          }
-        ]
-      }
-
       await runPluginWithConfig(config).then(result => {
         expect(result.css).not.toIncludeCss(css`
           .text-lime-500 {
