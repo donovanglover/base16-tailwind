@@ -4,14 +4,6 @@ import { Base16Config } from './Base16Config.ts'
 import type { Base16Options } from './Base16Options.ts'
 import { Base16Plugin } from './Base16Plugin.ts'
 
-function base16Handler (options?: Base16Options): PluginCreator {
-  return new Base16Plugin(options).creator
-}
-
-function base16Config (options?: Base16Options): Partial<Config> {
-  return new Base16Config(options)
-}
-
 interface Base16Tailwind {
   (options: Base16Options | undefined): {
     handler: PluginCreator
@@ -21,6 +13,13 @@ interface Base16Tailwind {
   __isOptionsFunction: true
 }
 
-export const base16Tailwind: Base16Tailwind = plugin.withOptions(base16Handler, base16Config)
+export const base16Tailwind: Base16Tailwind = plugin.withOptions(
+  (options?: Base16Options): PluginCreator => {
+    return new Base16Plugin(options).creator
+  },
+  (options?: Base16Options): Partial<Config> => {
+    return new Base16Config(options)
+  }
+)
 
 export default base16Tailwind
