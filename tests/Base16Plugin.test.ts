@@ -483,4 +483,80 @@ describe('Base16Plugin', () => {
       })
     })
   })
+
+  describe('invert', () => {
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base24-github">Hello World</div>`
+        }
+      ]
+    }
+
+    it('should return light to dark for light color schemes', async () => {
+      await runPluginWithConfig(config, { invert: true, system: 'base24' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .base24-github {
+            --color-100: 244 244 244;
+            --color-200: 62 62 62;
+            --color-300: 102 102 102;
+            --color-400: 140 140 140;
+            --color-500: 178 178 178;
+            --color-600: 216 216 216;
+            --color-700: 255 255 255;
+            --color-800: 255 255 255;
+            --color-red: 151 11 22;
+            --color-orange: 248 238 199;
+            --color-yellow: 46 108 186;
+            --color-green: 7 150 42;
+            --color-cyan: 137 209 236;
+            --color-blue: 0 62 138;
+            --color-purple: 233 70 145;
+            --color-pink: 75 5 11;
+            --color-100-lighter: 68 68 68;
+            --color-100-lightest: 34 34 34;
+            --color-red-bright: 222 0 0;
+            --color-yellow-bright: 241 208 7;
+            --color-green-bright: 135 213 162;
+            --color-cyan-bright: 28 250 254;
+            --color-blue-bright: 46 108 186;
+            --color-purple-bright: 255 162 159;
+          }
+        `)
+      })
+    })
+
+    it('should not return dark to light for light color schemes', async () => {
+      await runPluginWithConfig(config, { invert: true, system: 'base24' }).then(result => {
+        expect(result.css).not.toIncludeCss(css`
+          .base24-github {
+            --color-800: 244 244 244;
+            --color-700: 62 62 62;
+            --color-600: 102 102 102;
+            --color-500: 140 140 140;
+            --color-400: 178 178 178;
+            --color-300: 216 216 216;
+            --color-200: 255 255 255;
+            --color-100: 255 255 255;
+            --color-red: 151 11 22;
+            --color-orange: 248 238 199;
+            --color-yellow: 46 108 186;
+            --color-green: 7 150 42;
+            --color-cyan: 137 209 236;
+            --color-blue: 0 62 138;
+            --color-purple: 233 70 145;
+            --color-pink: 75 5 11;
+            --color-800-darker: 68 68 68;
+            --color-800-darkest: 34 34 34;
+            --color-red-bright: 222 0 0;
+            --color-yellow-bright: 241 208 7;
+            --color-green-bright: 135 213 162;
+            --color-cyan-bright: 28 250 254;
+            --color-blue-bright: 46 108 186;
+            --color-purple-bright: 255 162 159;
+          }
+        `)
+      })
+    })
+  })
 })

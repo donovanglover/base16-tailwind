@@ -15,6 +15,15 @@ export interface Base16Options {
    */
   system?: Base16System
 
+  /** Whether or not to invert the 100-800 colors
+   *
+   * This is useful when the default color scheme of your project is a light
+   * theme and you want 800 to mean "dark" instead of "light".
+   *
+   * @default false
+   */
+  invert?: boolean
+
   /** Whether or not to style prose classes as well.
    *
    * @default false
