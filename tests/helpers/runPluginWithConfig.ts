@@ -28,7 +28,7 @@ import typographyPlugin from '@tailwindcss/typography'
 import postcss from 'postcss'
 import tailwind, { type Config } from 'tailwindcss'
 import type { Base16Options } from '../../src/Base16Options.ts'
-import base16Tailwind from '../../src/lib.ts'
+import { base16Tailwind } from '../../src/lib.ts'
 
 type PostCSSResult = postcss.Result<postcss.Root>
 

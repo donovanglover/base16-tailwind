@@ -25,7 +25,7 @@ See [Base16Options](./src/Base16Options.ts) for the list of available options.
 tailwind.config.ts:
 
 ```tsx
-import base16Tailwind from 'base16-tailwind'
+import { base16Tailwind } from 'base16-tailwind'
 import type { Config } from 'tailwindcss/types/config'
 
 const tailwindConfig: Partial<Config> = {
