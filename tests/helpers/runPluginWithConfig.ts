@@ -24,6 +24,7 @@
  */
 
 import path from 'node:path'
+import typographyPlugin from '@tailwindcss/typography'
 import postcss from 'postcss'
 import tailwind, { type Config } from 'tailwindcss'
 import type { Base16Options } from '../../src/Base16Options.ts'
@@ -39,6 +40,7 @@ export async function runPluginWithConfig (config: Config, options?: Base16Optio
 
     ...{
       plugins: [
+        typographyPlugin,
         base16Tailwind(options)
       ],
 

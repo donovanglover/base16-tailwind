@@ -23,7 +23,6 @@
  * SOFTWARE.
  */
 
-import typographyPlugin from '@tailwindcss/typography'
 import type { Config } from 'tailwindcss'
 import { runPluginWithConfig } from './helpers/runPluginWithConfig.ts'
 
