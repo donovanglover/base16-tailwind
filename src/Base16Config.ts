@@ -1,12 +1,10 @@
-import typographyPlugin from '@tailwindcss/typography'
-import type { Config, CustomThemeConfig, PluginAPI, PluginsConfig } from 'tailwindcss/types/config'
+import type { Config, CustomThemeConfig, PluginAPI } from 'tailwindcss/types/config'
 import type { Base16ColorSpace } from './Base16ColorSpace.ts'
 import { Base16Css } from './Base16Css.ts'
 import type { Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}
-  plugins: PluginsConfig = []
   colorSpace: Base16ColorSpace
 
   constructor (options?: Base16Options) {
@@ -17,8 +15,6 @@ export class Base16Config implements Partial<Config> {
     options?.extendOnly === true ? this.extendColors(css) : this.overrideColors(css)
 
     if (options?.withTypography === true) {
-      this.plugins.push(typographyPlugin)
-
       this.theme.extend = {
         typography: ({ theme }: PluginAPI) => ({
           DEFAULT: {
