@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { join, parse } from 'node:path'
 import { cwd } from 'node:process'
 import { globSync } from 'glob'
 import YAML from 'yaml'
@@ -18,13 +18,13 @@ export class Base16Path {
       throw new Error(`Invalid Base16 path "${JSON.stringify(this.path)}" was given.`)
     }
 
-    const files = globSync(this.path + '/**/*.yaml')
+    const files = globSync(this.path + '/**/*.{yaml,yml,json}')
 
     for (const file of files) {
       const fileContents = readFileSync(file, 'utf-8')
       const yaml = YAML.parse(fileContents)
       const scheme = new Base16Scheme(yaml, options)
-      const fileNameSlug = `${scheme.system}-${file.split('/').reverse()[0].replace('.yaml', '')}`
+      const fileNameSlug = `${scheme.system}-${parse(file).name}`
 
       if (scheme.slug !== fileNameSlug) {
         throw new Error(`File "${file}" is invalid. The slug from the YAML data differs from the slug of the file name.`)
