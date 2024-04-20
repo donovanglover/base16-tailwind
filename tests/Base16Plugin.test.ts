@@ -283,4 +283,44 @@ describe('Base16Plugin', () => {
       })
     })
   })
+
+  describe('extendOnly', () => {
+    it('should not override default colors', async () => {
+      const config: Config = {
+        content: [
+          {
+            raw: html`<div class="base16-monokai"><p className="text-lime-500">Hello World</p></div>`
+          }
+        ]
+      }
+
+      await runPluginWithConfig(config, { extendOnly: true }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .text-lime-500 {
+            --tw-text-opacity: 1;
+            color: rgb(132 204 22 / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+
+    it('should override default colors when false', async () => {
+      const config: Config = {
+        content: [
+          {
+            raw: html`<div class="base16-monokai"><p className="text-lime-500">Hello World</p></div>`
+          }
+        ]
+      }
+
+      await runPluginWithConfig(config).then(result => {
+        expect(result.css).not.toIncludeCss(css`
+          .text-lime-500 {
+            --tw-text-opacity: 1;
+            color: rgb(132 204 22 / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+  })
 })
