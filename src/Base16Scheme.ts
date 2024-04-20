@@ -51,7 +51,7 @@ export class Base16Scheme {
     }
 
     if ('palette' in maybeBase16Scheme) {
-      this.palette = new Base16Palette(maybeBase16Scheme.palette, options)
+      this.palette = new Base16Palette(maybeBase16Scheme.palette, options, this.system)
     } else {
       throw new Error('No palette was given for Base16 scheme.')
     }

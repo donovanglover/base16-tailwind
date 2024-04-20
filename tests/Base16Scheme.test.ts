@@ -108,7 +108,7 @@ describe('Base16Scheme', () => {
         name: 'Cool Scheme',
         author: 'John Doe',
         variant: 'light',
-        palette: randomPalette()
+        palette: randomPalette(24)
       })).toHaveProperty('slug', 'base24-cool-scheme')
     })
 

@@ -35,4 +35,16 @@ describe('Base16Palette', () => {
       void new Base16Palette({ ...randomPalette(), ...{ base0F: 'LEL' } })
     }).toThrow()
   })
+
+  it('should error if base24 with 16 colors', () => {
+    expect(() => {
+      void new Base16Palette(randomPalette(), {}, 'base24')
+    }).toThrow()
+  })
+
+  it('should error if base16 with 24 colors', () => {
+    expect(() => {
+      void new Base16Palette(randomPalette(24), {}, 'base16')
+    }).toThrow()
+  })
 })

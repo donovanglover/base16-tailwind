@@ -1,9 +1,9 @@
 import crypto from 'node:crypto'
 
-export function randomPalette (): Record<string, string> {
+export function randomPalette (size: number = 16): Record<string, string> {
   return Array.from(
-    { length: 16 },
-    (_, i) => `base0${i.toString(16).toUpperCase()}`
+    { length: size },
+    (_, i) => `base0${i.toString(size).toUpperCase()}`
   ).reduce((a, v) => (
     { ...a, [v]: crypto.randomBytes(3).toString('hex') }
   ), {})
