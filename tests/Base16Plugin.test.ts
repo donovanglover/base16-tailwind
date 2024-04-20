@@ -323,4 +323,58 @@ describe('Base16Plugin', () => {
       })
     })
   })
+
+  describe('colorSpace', () => {
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base16-circus text-blue">Hello World</div>`
+        }
+      ]
+    }
+
+    it('should output rgb by default', async () => {
+      await runPluginWithConfig(config).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .text-blue {
+            --tw-text-opacity: 1;
+            color: rgb(var(--color-blue) / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+
+    it('should output rgba when specified', async () => {
+      await runPluginWithConfig(config, { colorSpace: 'rgba' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .text-blue {
+            --tw-text-opacity: 1;
+            color: rgba(var(--color-blue) / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+
+    it('should output hsl when specified', async () => {
+      await runPluginWithConfig(config, { colorSpace: 'hsl' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .text-blue {
+            --tw-text-opacity: 1;
+            color: hsl(var(--color-blue) / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+
+    it('should output hsla when specified', async () => {
+      await runPluginWithConfig(config, { colorSpace: 'hsla' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .text-blue {
+            --tw-text-opacity: 1;
+            color: hsla(var(--color-blue) / var(--tw-text-opacity));
+          };
+        `)
+      })
+    })
+  })
 })
