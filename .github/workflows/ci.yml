@@ -57,11 +57,15 @@ jobs:
           version: latest
       - run: npm audit
   publish:
-    name: deno publish --dry-run
+    name: deno publish
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: denoland/setup-deno@v1
         with:
           version: latest
-      - run: deno publish --dry-run
+      - run: deno task prepare
+      - run: deno publish
