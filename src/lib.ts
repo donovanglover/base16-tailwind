@@ -20,5 +20,3 @@ export const base16Tailwind: {
     return new Base16Config(options)
   }
 )
-
-export default base16Tailwind
