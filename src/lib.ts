@@ -15,8 +15,9 @@ function base16Config (options?: Base16Options): Partial<Config> {
 interface Base16Tailwind {
   (options: Base16Options | undefined): {
     handler: PluginCreator
-    config?: Partial<Config> | undefined
+    config?: Partial<Config>
   }
+
   __isOptionsFunction: true
 }
 
