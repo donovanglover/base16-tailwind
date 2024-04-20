@@ -35,8 +35,17 @@ export async function runPluginWithConfig (config: Config, options?: Base16Optio
   const { currentTestName } = expect.getState()
 
   config = {
-    ...{ plugins: [base16Tailwind(options)], corePlugins: { preflight: false } },
-    ...config
+    ...config,
+
+    ...{
+      plugins: [
+        base16Tailwind(options)
+      ],
+
+      corePlugins: {
+        preflight: false
+      }
+    }
   }
 
   return await postcss(tailwind(config)).process(
