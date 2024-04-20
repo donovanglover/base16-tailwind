@@ -267,4 +267,20 @@ describe('Base16Plugin', () => {
       })
     })
   })
+
+  describe('withTypography', () => {
+    it('should add prose variables to the html', async () => {
+      const config: Config = {
+        content: [
+          {
+            raw: html`<div class="base16-monokai"><article class="prose"><a href="/">Hello World</a></article></div>`
+          }
+        ]
+      }
+
+      await runPluginWithConfig(config, { withTypography: true }).then(result => {
+        expect(result.css).toMatch('--tw-prose-links: rgb(var(--color-blue) / <alpha-value>);')
+      })
+    })
+  })
 })
