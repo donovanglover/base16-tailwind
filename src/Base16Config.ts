@@ -1,4 +1,4 @@
-import type { Config, CustomThemeConfig, PluginAPI } from 'tailwindcss/types/config'
+import type { Config, CustomThemeConfig } from 'tailwindcss/types/config'
 import type { Base16ColorSpace } from './Base16ColorSpace.ts'
 import { Base16Css } from './Base16Css.ts'
 import type { Base16Options } from './Base16Options.ts'
@@ -16,28 +16,28 @@ export class Base16Config implements Partial<Config> {
 
     if (options?.withTypography === true) {
       this.theme.extend = {
-        typography: ({ theme }: PluginAPI) => ({
+        typography: {
           DEFAULT: {
             css: {
-              '--tw-prose-body': theme('colors[100]'),
-              '--tw-prose-headings': theme('colors[100]'),
-              '--tw-prose-lead': theme('colors[100]'),
-              '--tw-prose-links': theme('colors.blue'),
-              '--tw-prose-bold': theme('colors[100]'),
-              '--tw-prose-counters': theme('colors[100]'),
-              '--tw-prose-bullets': theme('colors[100]'),
-              '--tw-prose-hr': theme('colors[100]'),
-              '--tw-prose-quotes': theme('colors[100]'),
-              '--tw-prose-quote-borders': theme('colors[100]'),
-              '--tw-prose-captions': theme('colors[100]'),
-              '--tw-prose-code': theme('colors[100]'),
-              '--tw-prose-pre-code': theme('colors[100]'),
-              '--tw-prose-pre-bg': theme('colors[100]'),
-              '--tw-prose-th-borders': theme('colors[100]'),
-              '--tw-prose-td-borders': theme('colors[100]')
+              '--tw-prose-body': this.colorSpaceWithKey('100', false),
+              '--tw-prose-headings': this.colorSpaceWithKey('100', false),
+              '--tw-prose-lead': this.colorSpaceWithKey('100', false),
+              '--tw-prose-links': this.colorSpaceWithKey('blue', false),
+              '--tw-prose-bold': this.colorSpaceWithKey('100', false),
+              '--tw-prose-counters': this.colorSpaceWithKey('100', false),
+              '--tw-prose-bullets': this.colorSpaceWithKey('100', false),
+              '--tw-prose-hr': this.colorSpaceWithKey('100', false),
+              '--tw-prose-quotes': this.colorSpaceWithKey('100', false),
+              '--tw-prose-quote-borders': this.colorSpaceWithKey('100', false),
+              '--tw-prose-captions': this.colorSpaceWithKey('100', false),
+              '--tw-prose-code': this.colorSpaceWithKey('100', false),
+              '--tw-prose-pre-code': this.colorSpaceWithKey('100', false),
+              '--tw-prose-pre-bg': this.colorSpaceWithKey('100', false),
+              '--tw-prose-th-borders': this.colorSpaceWithKey('100', false),
+              '--tw-prose-td-borders': this.colorSpaceWithKey('100', false)
             }
           }
-        })
+        }
       }
     }
   }
@@ -64,7 +64,7 @@ export class Base16Config implements Partial<Config> {
     })
   }
 
-  colorSpaceWithKey (key: string): string {
-    return `${this.colorSpace}(var(--color-${key}) / <alpha-value>)`
+  colorSpaceWithKey (key: string, alpha: boolean = true): string {
+    return `${this.colorSpace}(var(--color-${key})${alpha ? ' / <alpha-value>' : ''})`
   }
 }

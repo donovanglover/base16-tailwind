@@ -279,13 +279,13 @@ describe('Base16Plugin', () => {
 
     it('should add prose variables to the html', async () => {
       await runPluginWithConfig(config, { withTypography: true }).then(result => {
-        expect(result.css).toMatch('--tw-prose-links: rgb(var(--color-blue) / <alpha-value>);')
+        expect(result.css).toMatch('--tw-prose-links: rgb(var(--color-blue));')
       })
     })
 
     it('should not add prose variables when false', async () => {
       await runPluginWithConfig(config).then(result => {
-        expect(result.css).not.toMatch('--tw-prose-links: rgb(var(--color-blue) / <alpha-value>);')
+        expect(result.css).not.toMatch('--tw-prose-links: rgb(var(--color-blue));')
       })
     })
   })
