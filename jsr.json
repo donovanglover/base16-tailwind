@@ -1,6 +1,6 @@
 {
   "name": "@donovanglover/base16-tailwind",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "exports": "./src/lib.ts",
 
   "publish": {
