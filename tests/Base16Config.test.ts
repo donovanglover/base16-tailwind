@@ -13,6 +13,10 @@ describe('Base16Config', () => {
     expect(new Base16Config()).toHaveProperty('theme.colors.current')
   })
 
+  it('should add inherit as a color option', () => {
+    expect(new Base16Config()).toHaveProperty('theme.colors.inherit')
+  })
+
   describe('withTypography', () => {
     it('should extend typography', () => {
       expect(new Base16Config({ withTypography: true })).toHaveProperty('theme.extend.typography')
@@ -42,6 +46,10 @@ describe('Base16Config', () => {
 
     it('should not extend the current color', () => {
       expect(new Base16Config({ extendOnly: true })).not.toHaveProperty('theme.extend.colors.current')
+    })
+
+    it('should not extend the inherit color', () => {
+      expect(new Base16Config({ extendOnly: true })).not.toHaveProperty('theme.extend.colors.inherit')
     })
 
     it('should not extend colors when false', () => {

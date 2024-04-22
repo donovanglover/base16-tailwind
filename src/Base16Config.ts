@@ -55,7 +55,8 @@ export class Base16Config implements Partial<Config> {
   overrideColors (css: Base16Css): void {
     this.theme.colors = {
       transparent: 'transparent',
-      current: 'currentColor'
+      current: 'currentColor',
+      inherit: 'inherit'
     }
 
     css.variables.forEach(key => {
