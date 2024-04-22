@@ -6,6 +6,24 @@ import type { Base16Options } from './Base16Options.ts'
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}
   colorSpace: Base16ColorSpace
+  readonly #typography: Record<string, string> = {}
+  readonly #text = [
+    '--tw-prose-body',
+    '--tw-prose-headings',
+    '--tw-prose-lead',
+    '--tw-prose-bold',
+    '--tw-prose-counters',
+    '--tw-prose-bullets',
+    '--tw-prose-hr',
+    '--tw-prose-quotes',
+    '--tw-prose-quote-borders',
+    '--tw-prose-captions',
+    '--tw-prose-code',
+    '--tw-prose-pre-code',
+    '--tw-prose-pre-bg',
+    '--tw-prose-th-borders',
+    '--tw-prose-td-borders'
+  ]
 
   constructor (options?: Base16Options) {
     const css = new Base16Css(options?.system ?? 'base16', options)
@@ -15,31 +33,24 @@ export class Base16Config implements Partial<Config> {
     options?.extendOnly === true ? this.extendColors(css) : this.overrideColors(css)
 
     if (options?.withTypography === true) {
+      this.generateVariables(options?.invert ?? false)
+
       this.theme.extend = {
         typography: {
           DEFAULT: {
-            css: {
-              '--tw-prose-body': this.colorSpaceWithKey('100', false),
-              '--tw-prose-headings': this.colorSpaceWithKey('100', false),
-              '--tw-prose-lead': this.colorSpaceWithKey('100', false),
-              '--tw-prose-links': this.colorSpaceWithKey('blue', false),
-              '--tw-prose-bold': this.colorSpaceWithKey('100', false),
-              '--tw-prose-counters': this.colorSpaceWithKey('100', false),
-              '--tw-prose-bullets': this.colorSpaceWithKey('100', false),
-              '--tw-prose-hr': this.colorSpaceWithKey('100', false),
-              '--tw-prose-quotes': this.colorSpaceWithKey('100', false),
-              '--tw-prose-quote-borders': this.colorSpaceWithKey('100', false),
-              '--tw-prose-captions': this.colorSpaceWithKey('100', false),
-              '--tw-prose-code': this.colorSpaceWithKey('100', false),
-              '--tw-prose-pre-code': this.colorSpaceWithKey('100', false),
-              '--tw-prose-pre-bg': this.colorSpaceWithKey('100', false),
-              '--tw-prose-th-borders': this.colorSpaceWithKey('100', false),
-              '--tw-prose-td-borders': this.colorSpaceWithKey('100', false)
-            }
+            css: this.#typography
           }
         }
       }
     }
+  }
+
+  generateVariables (invert: boolean): void {
+    this.#text.forEach(cssVariable => {
+      this.#typography[cssVariable] = this.colorSpaceWithKey(invert ? '800' : '100', false)
+    })
+
+    this.#typography['--tw-prose-links'] = this.colorSpaceWithKey('blue', false)
   }
 
   extendColors (css: Base16Css): void {
