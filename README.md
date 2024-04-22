@@ -18,6 +18,8 @@ Easily use base16 color schemes with Tailwind CSS.
 npx jsr add @donovanglover/base16-tailwind
 ```
 
+See the [jsr page](https://jsr.io/@donovanglover/base16-tailwind) for other package managers.
+
 ## Usage
 
 See [Base16Options](./src/Base16Options.ts) for the list of available options.
