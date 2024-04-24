@@ -47,7 +47,7 @@ export class Base16Config implements Partial<Config> {
 
   generateVariables (invert: boolean): void {
     this.#text.forEach(cssVariable => {
-      this.#typography[cssVariable] = this.colorSpaceWithKey(invert ? '800' : '100', false)
+      this.#typography[cssVariable] = this.colorSpaceWithKey(invert ? '700' : '100', false)
     })
 
     this.#typography['--tw-prose-links'] = this.colorSpaceWithKey('blue', false)
