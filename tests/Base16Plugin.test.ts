@@ -461,7 +461,7 @@ describe('Base16Plugin', () => {
         expect(result.css).toIncludeCss(css`
           .text-blue {
             --tw-text-opacity: 1;
-            color: rgba(var(--color-blue) / var(--tw-text-opacity));
+            color: rgba(var(--color-blue), var(--tw-text-opacity));
           };
         `)
       })
@@ -483,7 +483,7 @@ describe('Base16Plugin', () => {
         expect(result.css).toIncludeCss(css`
           .text-blue {
             --tw-text-opacity: 1;
-            color: hsla(var(--color-blue) / var(--tw-text-opacity));
+            color: hsla(var(--color-blue), var(--tw-text-opacity));
           };
         `)
       })

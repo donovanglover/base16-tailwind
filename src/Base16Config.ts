@@ -76,6 +76,8 @@ export class Base16Config implements Partial<Config> {
   }
 
   colorSpaceWithKey (key: string, alpha: boolean = true): string {
-    return `${this.colorSpace}(var(--color-${key})${alpha ? ' / <alpha-value>' : ''})`
+    const separator = this.colorSpace.endsWith('a') ? ',' : ' /'
+
+    return `${this.colorSpace}(var(--color-${key})${alpha ? `${separator} <alpha-value>` : ''})`
   }
 }

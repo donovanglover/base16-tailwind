@@ -71,7 +71,7 @@ describe('Base16Config', () => {
     })
 
     it('should use the rgba color space if specified', () => {
-      expect(new Base16Config({ colorSpace: 'rgba' })).toHaveProperty('theme.colors.red', 'rgba(var(--color-red) / <alpha-value>)')
+      expect(new Base16Config({ colorSpace: 'rgba' })).toHaveProperty('theme.colors.red', 'rgba(var(--color-red), <alpha-value>)')
     })
 
     it('should use the hsl color space if specified', () => {
@@ -79,7 +79,7 @@ describe('Base16Config', () => {
     })
 
     it('should use the hsla color space if specified', () => {
-      expect(new Base16Config({ colorSpace: 'hsla' })).toHaveProperty('theme.colors.red', 'hsla(var(--color-red) / <alpha-value>)')
+      expect(new Base16Config({ colorSpace: 'hsla' })).toHaveProperty('theme.colors.red', 'hsla(var(--color-red), <alpha-value>)')
     })
   })
 })
