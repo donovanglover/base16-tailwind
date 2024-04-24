@@ -2,6 +2,7 @@ import type { PluginCreator } from 'tailwindcss/types/config'
 import { Base16Css } from './Base16Css.ts'
 import type { Base16Options } from './Base16Options.ts'
 import { Base16Path } from './Base16Path.ts'
+import type { Base16Scheme } from './Base16Scheme.ts'
 
 export class Base16Plugin {
   readonly creator: PluginCreator
@@ -19,5 +20,9 @@ export class Base16Plugin {
         })
       }
     }
+  }
+
+  get schemes (): Base16Scheme[] {
+    return this.#base16Path.schemes
   }
 }
