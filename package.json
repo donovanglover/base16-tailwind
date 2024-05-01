@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@prettier/sync": "^0.5.2",
-    "@tailwindcss/typography": "^0.5.12",
+    "@tailwindcss/typography": "^0.5.13",
     "@types/jest": "^29.5.12",
     "@types/slug": "^5.0.8",
     "eslint-config-love": "^47.0.0",
