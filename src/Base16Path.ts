@@ -7,7 +7,7 @@ import type { Base16Options } from './Base16Options.ts'
 import { Base16Scheme } from './Base16Scheme.ts'
 
 export class Base16Path {
-  static readonly DEFAULT_PATH = join(__dirname, '../schemes')
+  static readonly DEFAULT_PATH = join(import.meta.dirname, '../schemes')
   readonly schemes: Base16Scheme[] = []
   readonly path: string
 
