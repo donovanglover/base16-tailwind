@@ -3,7 +3,6 @@
   "version": "0.1.7",
   "author": "Donovan Glover <https://donovan.is/>",
   "license": "MIT",
-  "type": "module",
   "repository": "donovanglover/base16-tailwind",
   "description": "Easily use base16 color schemes with Tailwind CSS.",
   "main": "src/lib.ts",
@@ -31,7 +30,6 @@
     "eslint-config-love": "^47.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
     "ts-jest": "^29.1.2",
-    "ts-jest-mock-import-meta": "^1.2.0",
     "ts-node": "^10.9.2"
   },
   "keywords": [
