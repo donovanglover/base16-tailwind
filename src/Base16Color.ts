@@ -1,7 +1,7 @@
 import { colord } from 'colord'
 
 export class Base16Color {
-  readonly #color: string
+  private readonly _color: string
 
   constructor (maybeBase16Color: unknown) {
     if (typeof maybeBase16Color !== 'string') {
@@ -12,22 +12,22 @@ export class Base16Color {
       throw new Error(`Invalid Base16 color "${maybeBase16Color}" was given.`)
     }
 
-    this.#color = maybeBase16Color.replace('#', '')
+    this._color = maybeBase16Color.replace('#', '')
   }
 
   get rgb (): string {
-    return colord(`#${this.#color}`).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '')
+    return colord(`#${this._color}`).toRgbString().split('(')[1].split(')')[0].replaceAll(',', '')
   }
 
   get hsl (): string {
-    return colord(`#${this.#color}`).toHslString().split('(')[1].split(')')[0].replaceAll(',', '')
+    return colord(`#${this._color}`).toHslString().split('(')[1].split(')')[0].replaceAll(',', '')
   }
 
   get rgba (): string {
-    return colord(`#${this.#color}`).toRgbString().split('(')[1].split(')')[0]
+    return colord(`#${this._color}`).toRgbString().split('(')[1].split(')')[0]
   }
 
   get hsla (): string {
-    return colord(`#${this.#color}`).toHslString().split('(')[1].split(')')[0]
+    return colord(`#${this._color}`).toHslString().split('(')[1].split(')')[0]
   }
 }

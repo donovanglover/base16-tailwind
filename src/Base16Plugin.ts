@@ -6,13 +6,13 @@ import type { Base16Scheme } from './Base16Scheme.ts'
 
 export class Base16Plugin {
   readonly creator: PluginCreator
-  readonly #base16Path: Base16Path
+  private readonly _base16Path: Base16Path
 
   constructor (options?: Base16Options) {
-    this.#base16Path = new Base16Path(options?.customPath, options)
+    this._base16Path = new Base16Path(options?.customPath, options)
 
     this.creator = ({ addUtilities }) => {
-      for (const scheme of this.#base16Path.schemes) {
+      for (const scheme of this._base16Path.schemes) {
         const css = new Base16Css(scheme.system, options)
 
         addUtilities({
@@ -23,6 +23,6 @@ export class Base16Plugin {
   }
 
   get schemes (): Base16Scheme[] {
-    return this.#base16Path.schemes
+    return this._base16Path.schemes
   }
 }

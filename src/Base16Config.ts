@@ -6,8 +6,8 @@ import type { Base16Options } from './Base16Options.ts'
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}
   colorSpace: Base16ColorSpace
-  readonly #typography: Record<string, string> = {}
-  readonly #text = [
+  private readonly _typography: Record<string, string> = {}
+  private readonly _text = [
     '--tw-prose-body',
     '--tw-prose-headings',
     '--tw-prose-lead',
@@ -38,7 +38,7 @@ export class Base16Config implements Partial<Config> {
       this.theme.extend = {
         typography: {
           DEFAULT: {
-            css: this.#typography
+            css: this._typography
           }
         }
       }
@@ -46,11 +46,11 @@ export class Base16Config implements Partial<Config> {
   }
 
   generateVariables (invert: boolean): void {
-    this.#text.forEach(cssVariable => {
-      this.#typography[cssVariable] = this.colorSpaceWithKey(invert ? '700' : '100', false)
+    this._text.forEach(cssVariable => {
+      this._typography[cssVariable] = this.colorSpaceWithKey(invert ? '700' : '100', false)
     })
 
-    this.#typography['--tw-prose-links'] = this.colorSpaceWithKey('blue', false)
+    this._typography['--tw-prose-links'] = this.colorSpaceWithKey('blue', false)
   }
 
   extendColors (css: Base16Css): void {

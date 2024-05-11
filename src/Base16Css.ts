@@ -3,7 +3,7 @@ import type { Base16Options } from './Base16Options.ts'
 import type { Base16Palette } from './Base16Palette.ts'
 
 export class Base16Css {
-  static readonly #colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink']
+  private static readonly _colors = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'purple', 'pink']
   readonly variables: string[] = []
 
   constructor (maybeSystem: unknown, options?: Base16Options) {
@@ -16,16 +16,16 @@ export class Base16Css {
     }
 
     for (let i = 0; i < 16; i++) {
-      this.variables.push(i < 8 ? `${options?.invert === true ? i + 1 : 8 - i}00` : Base16Css.#colors[i - 8])
+      this.variables.push(i < 8 ? `${options?.invert === true ? i + 1 : 8 - i}00` : Base16Css._colors[i - 8])
     }
 
     if (options?.system === 'base24') {
       this.variables.push(options?.invert === true ? '100-lighter' : '800-darker')
       this.variables.push(options?.invert === true ? '100-lightest' : '800-darkest')
-      this.variables.push(`${Base16Css.#colors[0]}-bright`)
+      this.variables.push(`${Base16Css._colors[0]}-bright`)
 
       for (let i = 19; i < 24; i++) {
-        this.variables.push(`${Base16Css.#colors[i - 17]}-bright`)
+        this.variables.push(`${Base16Css._colors[i - 17]}-bright`)
       }
     }
   }
