@@ -5,7 +5,7 @@ import type { Base16Options } from './Base16Options.ts'
 
 export class Base16Config implements Partial<Config> {
   theme: Partial<CustomThemeConfig> = {}
-  colorSpace: Base16ColorSpace
+  private readonly _colorSpace: Base16ColorSpace
   private readonly _typography: Record<string, string> = {}
   private readonly _text = [
     '--tw-prose-body',
@@ -28,7 +28,7 @@ export class Base16Config implements Partial<Config> {
   constructor (options?: Base16Options) {
     const css = new Base16Css(options?.system ?? 'base16', options)
 
-    this.colorSpace = options?.colorSpace ?? 'rgb'
+    this._colorSpace = options?.colorSpace ?? 'rgb'
 
     options?.extendOnly === true ? this.extendColors(css) : this.overrideColors(css)
 
@@ -76,8 +76,8 @@ export class Base16Config implements Partial<Config> {
   }
 
   colorSpaceWithKey (key: string, alpha: boolean = true): string {
-    const separator = this.colorSpace.endsWith('a') ? ',' : ' /'
+    const separator = this._colorSpace.endsWith('a') ? ',' : ' /'
 
-    return `${this.colorSpace}(var(--color-${key})${alpha ? `${separator} <alpha-value>` : ''})`
+    return `${this._colorSpace}(var(--color-${key})${alpha ? `${separator} <alpha-value>` : ''})`
   }
 }
