@@ -1,3 +1,4 @@
+import slug from 'slug'
 import type { Base16ColorSpace } from './Base16ColorSpace.ts'
 import type { Base16Options } from './Base16Options.ts'
 import type { Base16Palette } from './Base16Palette.ts'
@@ -27,6 +28,20 @@ export class Base16Css {
       for (let i = 19; i < 24; i++) {
         this.variables.push(`${Base16Css._colors[i - 17]}-bright`)
       }
+    }
+
+    if (options?.prefix !== undefined) {
+      if (options?.prefix.length < 1 || options.prefix.length > 16) {
+        throw new Error('Prefix should be between 1 and 16 characters long.')
+      }
+
+      if (options.prefix !== slug(options.prefix)) {
+        throw new Error('Prefix contains special characters.')
+      }
+
+      this.variables.forEach((variable, i) => {
+        this.variables[i] = `${options.prefix}-${variable}`
+      })
     }
   }
 

@@ -19,6 +19,52 @@ describe('Base16Css', () => {
     }).toThrow()
   })
 
+  describe('prefix', () => {
+    it('should pass if alphanumeric prefix', () => {
+      expect(() => {
+        void new Base16Css('base16', { prefix: 'base16' })
+      }).not.toThrow()
+    })
+
+    it('should pass if slug prefix', () => {
+      expect(() => {
+        void new Base16Css('base16', { prefix: 'cool-prefix' })
+      }).not.toThrow()
+    })
+    it('should error if prefix is too short', () => {
+      expect(() => {
+        void new Base16Css('base16', { prefix: '' })
+      }).toThrow()
+    })
+
+    it('should error if prefix is too long', () => {
+      expect(() => {
+        void new Base16Css('base16', { prefix: 'thisprefixistoolong' })
+      }).toThrow()
+    })
+
+    it('should error if non-alphanumeric prefix', () => {
+      expect(() => {
+        void new Base16Css('base16', { prefix: 'best-prefix?' })
+      }).toThrow()
+    })
+
+    it('should add prefix if valid one is specified', () => {
+      expect(new Base16Css('base16', {
+        prefix: 'tinted'
+      }).variables).toStrictEqual([
+        'tinted-800', 'tinted-700',
+        'tinted-600', 'tinted-500',
+        'tinted-400', 'tinted-300',
+        'tinted-200', 'tinted-100',
+        'tinted-red', 'tinted-orange',
+        'tinted-yellow', 'tinted-green',
+        'tinted-cyan', 'tinted-blue',
+        'tinted-purple', 'tinted-pink'
+      ])
+    })
+  })
+
   describe('fromPalette', () => {
     const css = new Base16Css('base16')
     const palette = new Base16Palette(randomPalette())

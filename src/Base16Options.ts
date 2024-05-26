@@ -54,4 +54,17 @@ export interface Base16Options {
   * @default 'rgb'
   **/
   colorSpace?: Base16ColorSpace
+
+  /** Optional prefix to namespace color classes with.
+   *
+   * This lets you use classes like `bg-base16-red` and `bg-base16-300`
+   * instead of `bg-red` and `bg-300`.
+   *
+   * If set, this must be a slug-like string between 1 and 16 characters long.
+   *
+   * @default undefined
+   *
+   * @example 'base16'
+   **/
+  prefix?: string
 }

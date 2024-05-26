@@ -565,4 +565,39 @@ describe('Base16Plugin', () => {
       })
     })
   })
+
+  describe('prefix', () => {
+    const config: Config = {
+      content: [
+        {
+          raw: html`<div class="base16-monokai">Hello World</div>`
+        }
+      ]
+    }
+
+    it('should return css variables with prefix', async () => {
+      await runPluginWithConfig(config, { prefix: 'base16' }).then(result => {
+        expect(result.css).toIncludeCss(css`
+          .base16-monokai {
+            --color-base16-800: 39 40 34;
+            --color-base16-700: 56 56 48;
+            --color-base16-600: 73 72 62;
+            --color-base16-500: 117 113 94;
+            --color-base16-400: 165 159 133;
+            --color-base16-300: 248 248 242;
+            --color-base16-200: 245 244 241;
+            --color-base16-100: 249 248 245;
+            --color-base16-red: 249 38 114;
+            --color-base16-orange: 253 151 31;
+            --color-base16-yellow: 244 191 117;
+            --color-base16-green: 166 226 46;
+            --color-base16-cyan: 161 239 228;
+            --color-base16-blue: 102 217 239;
+            --color-base16-purple: 174 129 255;
+            --color-base16-pink: 204 102 51
+          }
+        `)
+      })
+    })
+  })
 })
