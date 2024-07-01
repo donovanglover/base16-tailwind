@@ -29,7 +29,7 @@
     "@types/jest": "^29.5.12",
     "eslint-config-love": "^47.0.0",
     "eslint-plugin-simple-import-sort": "^12.1.0",
-    "ts-jest": "^29.1.2",
+    "ts-jest": "^29.1.5",
     "ts-node": "^10.9.2"
   },
   "keywords": [
