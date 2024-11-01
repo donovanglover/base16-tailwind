@@ -1,0 +1,20 @@
+name: publish
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  jsr:
+    name: deno publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v1
+        with:
+          version: latest
+      - run: deno task prepare
+      - run: deno publish
