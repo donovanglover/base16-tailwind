@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 1.0.0 - 2024-11-17
+
+`base16-tailwind` has been stable for a while now and all features have been implemented, so it's time to release v1.0.0.
+
+### New features
+
+- [feat: Add option to specify class prefix](https://github.com/donovanglover/base16-tailwind/commit/c6011cb5d21e73e60c2a41d691a8937543c419f9)
+
+### Other changes
+
+- Updated schemes
+
+**Full Changelog**: https://github.com/donovanglover/base16-tailwind/compare/0.1.7...1.0.0
+
 ## 0.1.7 - 2024-05-11
 
 - [fix: Prefer private keyword over private identifiers](https://github.com/donovanglover/base16-tailwind/commit/1917427c90dabcbdcbad67c41e66944bea575b1b)
