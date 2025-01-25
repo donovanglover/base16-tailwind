@@ -21,7 +21,7 @@
     "glob": "^10.3.12",
     "slug": "^9.0.0",
     "tailwindcss": "^3.4.14",
-    "yaml": "^2.6.0"
+    "yaml": "^2.7.0"
   },
   "devDependencies": {
     "@prettier/sync": "^0.5.2",
