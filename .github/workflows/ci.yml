@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: latest
       - run: npm ci
       - run: npm run test
   test-without-coverage:
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: latest
       - run: npm ci
       - run: npm run test-without-coverage
   add:
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: latest
       - run: mkdir test && cd test && npm init -y
       - run: npm add donovanglover/base16-tailwind
   lint:
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: latest
       - run: npm ci
       - run: npm run lint
   audit:
@@ -54,5 +54,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          version: latest
+          node-version: latest
       - run: npm audit
