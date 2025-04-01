@@ -24,7 +24,7 @@
     "yaml": "^2.7.0"
   },
   "devDependencies": {
-    "@prettier/sync": "^0.5.2",
+    "@prettier/sync": "^0.5.5",
     "@tailwindcss/typography": "^0.5.16",
     "@types/jest": "^29.5.14",
     "eslint-config-love": "^47.0.0",
